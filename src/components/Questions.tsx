@@ -4,6 +4,7 @@ import { Question } from "./Question"
 import { Progress } from './Progress';
 import { Button } from './Button';
 import styled from "styled-components";
+import { Link } from "./Link";
 
 type QuestionsProps = {
     questions: QuestionType[],
@@ -11,11 +12,10 @@ type QuestionsProps = {
 }
 
 export const Questions = ({ questions, onFinish }: QuestionsProps) => {
-    const answersInit = [
-        {id: 0, isRight: false, isDone: false,},
-        {id: 1, isRight: false, isDone: false,},
-        {id: 2, isRight: false, isDone: false,}
-    ];
+    let answersInit = [];
+    for (let i = 0; i < questions.length; i++) {
+        answersInit.push({id: i, isRight: false, isDone: false,});
+    }
 
     let [questionNumber, setQuestionNumber] = useState<number>(0);
     let [isAnswerDone, setIsAnswerDone] = useState<boolean>(false);
@@ -42,7 +42,10 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
             {isAnswerDone &&
                 <>
                     <Button title={isLastQuestion ? "Finish" : "Next"} onClick={isLastQuestion ? onFinish : nextQuestion}/>
-                    <div>{answers[questionNumber].isRight ? "👍" : "😔"}{questions[questionNumber].answerDescription}</div>
+                    <div>
+                        {answers[questionNumber].isRight ? "👍" : "😔"}
+                        <Link title={questions[questionNumber].answerDescription} href={questions[questionNumber].answerDescription}/>
+                    </div>
                 </>
             }
         </StyledContainer>

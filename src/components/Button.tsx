@@ -8,21 +8,19 @@ type ButtonProps = {
 
 export const Button = ({ title, onClick, disabled }: ButtonProps) => {
     return (
-        <StyledButton disabled={disabled} onClick={onClick}>{title}</StyledButton>
+        <StyledButton disabled={disabled} isdisabled={disabled} onClick={onClick}>{title}</StyledButton>
     )
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{isdisabled?: boolean}>`
     border-radius: 8px;
     padding: 4px 10px;
     border: none;
     color: #b18742;
     font-weight: bold;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? "default" : "pointer"};
 
     &:hover {
-        background-color: antiquewhite;
+        background-color: ${props => props.disabled ? "none" : "antiquewhite"};
     }
 `
-
-//change styles. Especially for disabled

@@ -1,10 +1,12 @@
 type LinkProps = {
     title: string,
-    onClick: () => void
+    onClick?: () => void
+    href?: string
 }
 
-export const Link = ({ title, onClick }: LinkProps) => {
+export const Link = ({ title, onClick, href }: LinkProps) => {
+
     return (
-        <a onClick={() => onClick()}>{title}</a>
+        <a href={href} target="_blank" onClick={onClick}>{title}</a>
     )
 }

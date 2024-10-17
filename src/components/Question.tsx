@@ -24,7 +24,7 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone }: Question
 
     return (
         <StyledContainer>
-            <p>{question.question}?</p>
+            <p>{question.question}</p>
             <Options
                 options={question.options}
                 showRight={isAnswerDone}
@@ -40,6 +40,7 @@ const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 6px;
+    margin-bottom: 4px;
 
     button {
         align-self: flex-end;

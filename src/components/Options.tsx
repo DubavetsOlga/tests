@@ -24,7 +24,7 @@ export const Options = ({ options, setAnswer, showRight } : OptionsProps) => {
                     <OptionContainer
                         key={el.id}
                         color={(showRight && userAnswer === el.id) ? (el.isRight ? "right" : "wrong") : "none"}
-                        withHover={showRight}
+                        withhover={showRight}
                     >
                         <input
                             disabled={showRight}
@@ -45,20 +45,20 @@ export const Options = ({ options, setAnswer, showRight } : OptionsProps) => {
 const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 6px;
 `
 
-const OptionContainer = styled.div<{color: "none" | "right" | "wrong", withHover: boolean}>`
-    background-color: ${props => props.color !== "none" ? (props.color === "right" ? "#87b362" : "#cd6858") : "white"};
+const OptionContainer = styled.div<{color: "none" | "right" | "wrong", withhover: boolean}>`
+    background-color: ${props => props.color !== "none" ? (props.color === "right" ? "#87b362" : "#cd6858") : "#e4dfdf"};
     margin-bottom: 6px;
     border: none;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    height: 20px;
     padding: 4px;
 
     &:hover {
-        background-color: ${props => props.withHover ? "none" : "beige"}
+        background-color: ${props => props.withhover ? "none" : "beige"}
     }
 
     label {

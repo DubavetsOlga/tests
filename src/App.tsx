@@ -4,6 +4,8 @@ import { v1 } from 'uuid';
 import { Questions } from './components/Questions';
 import { Topics } from './components/Topics';
 import { Link } from './components/Link';
+import { htmlQuestions } from './questions/html/HtmlQuestions';
+import { cssQuestions } from './questions/css/CssQuestions';
 
 export type OptionType = {
     id: string,
@@ -24,152 +26,8 @@ export type TopicType = {
     questions: QuestionType[]
 }
 
-const questionsHTML = [
-    {
-        id: v1(),
-        question: "q1",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-    {
-        id: v1(),
-        question: "q2",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-    {
-        id: v1(),
-        question: "q3",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-];
-
-const questionsCSS = [
-    {
-        id: v1(),
-        question: "q1",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-                isUserAnswer: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-    {
-        id: v1(),
-        question: "q2",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-                isUserAnswer: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-    {
-        id: v1(),
-        question: "q3",
-        options: [
-            {
-                id: v1(),
-                answer: "a1",
-                isRight: true,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a2",
-                isRight: false,
-                isUserAnswer: false,
-            },
-            {
-                id: v1(),
-                answer: "a3",
-                isRight: false,
-                isUserAnswer: false,
-            },
-        ],
-        answerDescription: "first right",
-    },
-];
+const questionsHTML = htmlQuestions;
+const questionsCSS = cssQuestions;
 
 const topics = [
     {
