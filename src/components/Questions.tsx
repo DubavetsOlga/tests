@@ -42,8 +42,9 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
             {isAnswerDone &&
                 <>
                     <Button title={isLastQuestion ? "Finish" : "Next"} onClick={isLastQuestion ? onFinish : nextQuestion}/>
-                    <div>{questions[questionNumber].answerDescription}</div>
-                </>}
+                    <div>{answers[questionNumber].isRight ? "👍" : "😔"}{questions[questionNumber].answerDescription}</div>
+                </>
+            }
         </StyledContainer>
     )
 }
@@ -51,4 +52,8 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
 const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    button {
+        align-self: flex-end;
+    }
 `

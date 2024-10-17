@@ -198,8 +198,8 @@ function App() {
 
     return (
         <div className="App">
-            {selectedTopic && <Link title="<- Back" onClick={goToMain}/>}
-            <h2>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
+            {selectedTopic && <Link title="<- Back to topics" onClick={goToMain}/>}
+            <h2 style={{alignSelf: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
             {
                 selectedTopic
                 ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>

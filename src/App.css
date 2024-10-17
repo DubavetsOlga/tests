@@ -1,19 +1,21 @@
+body {
+  background-color: #333738;
+  color: #b4b5be;
+}
+
+h2 {
+  color: #b18742
+}
 
 .App {
   padding: 30px;
   display: flex;
   flex-direction: column;
-  width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-input {
-  text-align: end;
-  margin-bottom: 10px;
-}
-
-.App > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: space-between;
+a:hover {
+    color: #e6d5a9;
+    cursor: pointer;
 }

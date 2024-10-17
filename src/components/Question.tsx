@@ -2,6 +2,7 @@ import { QuestionType } from "../App"
 import { Options } from "./Options"
 import { Button } from './Button';
 import { useState } from "react";
+import styled from "styled-components";
 
 type QuestionProps = {
     question: QuestionType
@@ -22,7 +23,7 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone }: Question
     }
 
     return (
-        <div>
+        <StyledContainer>
             <p>{question.question}?</p>
             <Options
                 options={question.options}
@@ -31,6 +32,17 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone }: Question
             />
             { !isAnswerDone && <Button disabled={!userAnswer} title="Answer" onClick={answerClickHandler}/>
             }
-        </div>
+        </StyledContainer>
     )
 }
+
+const StyledContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    button {
+        align-self: flex-end;
+        width: fit-content;
+    }
+`
