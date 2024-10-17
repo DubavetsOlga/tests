@@ -6,6 +6,7 @@ import { Topics } from './components/Topics';
 import { Link } from './components/Link';
 import { htmlQuestions } from './questions/html/HtmlQuestions';
 import { cssQuestions } from './questions/css/CssQuestions';
+import backArrow from './assets/left-back-arrow.svg'
 
 export type OptionType = {
     id: string,
@@ -56,7 +57,7 @@ function App() {
 
     return (
         <div className="App">
-            {selectedTopic && <Link title="<- Back to topics" onClick={goToMain}/>}
+            {selectedTopic && <Link onClick={goToMain}><img style={{width: "12px"}} src={backArrow} alt="Back"/> Back to topics</Link>}
             <h2 style={{alignSelf: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
             {
                 selectedTopic

@@ -44,7 +44,9 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
                     <Button title={isLastQuestion ? "Finish" : "Next"} onClick={isLastQuestion ? onFinish : nextQuestion}/>
                     <div>
                         {answers[questionNumber].isRight ? "👍" : "😔"}
-                        <Link title={questions[questionNumber].answerDescription} href={questions[questionNumber].answerDescription}/>
+                        <Link href={questions[questionNumber].answerDescription}>
+                            {questions[questionNumber].answerDescription}
+                        </Link>
                     </div>
                 </>
             }
