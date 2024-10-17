@@ -1,0 +1,19 @@
+
+.App {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+
+input {
+  text-align: end;
+  margin-bottom: 10px;
+}
+
+.App > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+}
