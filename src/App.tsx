@@ -9,37 +9,40 @@ import { cssQuestions } from './questions/css/CssQuestions';
 import backArrow from './assets/left-back-arrow.svg'
 
 export type OptionType = {
-    id: string,
-    answer: string,
-    isRight: boolean,
+    id: string
+    answer: string
+    isRight: boolean
 }
 
 export type QuestionType = {
-    id: string,
-    question: string,
-    options: OptionType[],
+    id: string
+    question: string
+    options: OptionType[]
     answerDescription: string
 }
 
 export type TopicType = {
-    id: string,
-    title: string,
+    id: string
+    title: string
     questions: QuestionType[]
+    description: string
 }
 
-const questionsHTML = htmlQuestions;
-const questionsCSS = cssQuestions;
+const questionsHTML: QuestionType[] = htmlQuestions;
+const questionsCSS: QuestionType[] = cssQuestions;
 
-const topics = [
+const topics: TopicType[] = [
     {
         id: v1(),
         title: "HTML",
-        questions: questionsHTML
+        questions: questionsHTML,
+        description: "5 questions about base HTML"
     },
     {
         id: v1(),
         title: "CSS",
-        questions: questionsCSS
+        questions: questionsCSS,
+        description: "5 questions about base CSS"
     },
 ];
 

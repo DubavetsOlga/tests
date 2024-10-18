@@ -1,21 +1,20 @@
 import { QuestionType } from "../App"
 import { Options } from "./Options"
 import { Button } from './Button';
-import { useState } from "react";
 import styled from "styled-components";
 
 type QuestionProps = {
     question: QuestionType
     setQuestionAnswer: (isRight: boolean) => void
+    setUserAnswer: (answerId: string) => void
     isAnswerDone: boolean
+    userAnswer: string | null
 }
 
-export const Question = ({ question, setQuestionAnswer, isAnswerDone }: QuestionProps) => {
-    let [userAnswer, setUserAnswer] = useState<string | null>(null);
+export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAnswer, userAnswer }: QuestionProps) => {
 
     const answerClickHandler = () => {
         setQuestionAnswer(!!question.options.find(el => el.id === userAnswer)?.isRight);
-        setUserAnswer(null);
     }
 
     const setQuestionAnswerHandler = (optionId: string) => {
@@ -29,9 +28,9 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone }: Question
                 options={question.options}
                 showRight={isAnswerDone}
                 setAnswer={ setQuestionAnswerHandler }
+                userAnswer={userAnswer}
             />
-            { !isAnswerDone && <Button disabled={!userAnswer} title="Answer" onClick={answerClickHandler}/>
-            }
+            { !isAnswerDone && <Button disabled={!userAnswer} title="Answer" onClick={answerClickHandler}/> }
         </StyledContainer>
     )
 }

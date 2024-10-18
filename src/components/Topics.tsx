@@ -9,7 +9,14 @@ type TopicsProps = {
 export const Topics = ({ topics, chooseTopic }: TopicsProps) => {
     return (
         <ul>
-            {topics.map(el => <li key={el.id}><h3><Link onClick={() => chooseTopic(el.id)}>{el.title}</Link></h3></li>)}
+            {topics.map(el => 
+                <li key={el.id}>
+                    <h3>
+                        <Link onClick={() => chooseTopic(el.id)}>{el.title}</Link>
+                    </h3>
+                    <p>{el.description}</p>
+                </li>
+            )}
         </ul>
     )
 }

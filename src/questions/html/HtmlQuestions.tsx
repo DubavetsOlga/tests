@@ -1,6 +1,7 @@
 import { v1 } from 'uuid';
+import { QuestionType } from '../../App';
 
-export const htmlQuestions = [
+export const htmlQuestions: QuestionType[] = [
     {
         id: v1(),
         question: "Какое значение нужно указать в атрибуте target, чтобы ссылка открывалась в новой вкладке?",

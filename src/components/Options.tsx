@@ -1,19 +1,16 @@
 import styled from "styled-components"
 import { OptionType } from "../App"
-import { useState } from "react"
 
 type OptionsProps = {
     options: OptionType[]
     setAnswer: (optionId: string) => void
     showRight: boolean
+    userAnswer: string | null
 }
 
-export const Options = ({ options, setAnswer, showRight } : OptionsProps) => {
-
-    let [userAnswer, setUserAnswer] = useState<string | null>(null);
+export const Options = ({ options, setAnswer, showRight, userAnswer } : OptionsProps) => {
 
     const setAnswerHandler = (option: string) => {
-        setUserAnswer(option);
         setAnswer(option);
     }
 
@@ -33,6 +30,7 @@ export const Options = ({ options, setAnswer, showRight } : OptionsProps) => {
                             id={el.id}
                             value={el.id}
                             onClick={() => setAnswerHandler(el.id)}
+                            checked={userAnswer === el.id}
                         />
                         <label htmlFor={el.id}>{el.answer}</label>
                     </OptionContainer>

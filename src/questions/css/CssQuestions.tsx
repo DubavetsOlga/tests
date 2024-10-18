@@ -1,6 +1,7 @@
 import { v1 } from 'uuid';
+import { QuestionType } from '../../App';
 
-export const cssQuestions = [
+export const cssQuestions: QuestionType[] = [
     {
         id: v1(),
         question: "Какая CSS-функция используется для вставки пользовательских свойств (custom property)?",
