@@ -35,9 +35,14 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
         setAnswers([...answers]);
     }
 
+    const progressRoundClickHandler = (number: number) => {
+        setQuestionNumber(number);
+        setIsAnswerDone(answers[number].isDone);
+    }
+
     return (
         <StyledContainer>
-            <Progress questionNumber={questionNumber + 1} answers={answers}/>
+            <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={progressRoundClickHandler}/>
             <Question question={questions[questionNumber]} setQuestionAnswer={setQuestionAnswer} isAnswerDone={isAnswerDone}/>
             {isAnswerDone &&
                 <>
