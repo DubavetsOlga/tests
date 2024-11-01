@@ -1,3 +1,4 @@
+import { List, ListItem } from "@mui/material";
 import { TopicType } from "../App";
 import { Link } from "./Link";
 
@@ -8,15 +9,15 @@ type TopicsProps = {
 
 export const Topics = ({ topics, chooseTopic }: TopicsProps) => {
     return (
-        <ul>
+        <List>
             {topics.map(el => 
-                <li key={el.id}>
+                <ListItem key={el.id}>
                     <h3>
                         <Link onClick={() => chooseTopic(el.id)}>{el.title}</Link>
                     </h3>
                     <p>{el.description}</p>
-                </li>
+                </ListItem>
             )}
-        </ul>
+        </List>
     )
 }

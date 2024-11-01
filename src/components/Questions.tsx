@@ -1,27 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { QuestionType } from "../App"
 import { Question } from "./Question"
-import { Progress } from './Progress';
-import { Button } from './Button';
-import styled from "styled-components";
 import { Link } from "./Link";
+import Button from "@mui/material/Button";
+import { Progress } from "./Progress";
 
 type QuestionsProps = {
     questions: QuestionType[],
     onFinish: () => void
 }
 
-export const Questions = ({ questions, onFinish }: QuestionsProps) => {
-    let answersInit: {id: number, isRight: boolean, isDone: boolean, userAnswer: null | string}[] = [];
-    for (let i = 0; i < questions.length; i++) {
-        answersInit.push({id: i, isRight: false, isDone: false, userAnswer: null});
+type answerType = {
+    id: number
+    isRight: boolean
+    isDone: boolean
+    userAnswer: null | string
+}
+
+const answersInition = (count: number) => {
+    const answersInit: answerType[] = [];
+    for (let i = 0; i < count; i++) {
+        answersInit.push({ id: i, isRight: false, isDone: false, userAnswer: null });
     }
 
-    let [questionNumber, setQuestionNumber] = useState<number>(0);
-    let [isAnswerDone, setIsAnswerDone] = useState<boolean>(false);
-    let [answers, setAnswers] = useState(answersInit);
+    return answersInit;
+}
 
-    let isLastQuestion = questionNumber === questions.length - 1;
+export const Questions = ({ questions, onFinish }: QuestionsProps) => {
+    const [questionNumber, setQuestionNumber] = useState(0);
+    const [isAnswerDone, setIsAnswerDone] = useState(false);
+    const [answers, setAnswers] = useState<answerType[]>(answersInition(questions.length));
+
+    const isLastQuestion = questionNumber === questions.length - 1;
 
     const nextQuestion = () => {
         setQuestionNumber(questionNumber + 1);
@@ -46,7 +56,7 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
     }
 
     return (
-        <StyledContainer>
+        <>
             <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={progressRoundClickHandler}/>
             <Question
                 question={questions[questionNumber]}
@@ -57,7 +67,9 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
             />
             {isAnswerDone &&
                 <>
-                    <Button title={isLastQuestion ? "Finish" : "Next"} onClick={isLastQuestion ? onFinish : nextQuestion}/>
+                    <Button onClick={isLastQuestion ? onFinish : nextQuestion} variant="outlined">
+                        {isLastQuestion ? "Finish" : "Next"}
+                    </Button>
                     <div>
                         {answers[questionNumber].isRight ? "👍" : "😔"}
                         <Link href={questions[questionNumber].answerDescription}>
@@ -66,15 +78,6 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
                     </div>
                 </>
             }
-        </StyledContainer>
+        </>
     )
 }
-
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    button {
-        align-self: flex-end;
-    }
-`

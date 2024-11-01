@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { OptionType } from "../App"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Radio from "@mui/material/Radio"
+
 
 type OptionsProps = {
     options: OptionType[]
@@ -10,41 +13,32 @@ type OptionsProps = {
 
 export const Options = ({ options, setAnswer, showRight, userAnswer } : OptionsProps) => {
 
-    const setAnswerHandler = (option: string) => {
-        setAnswer(option);
-    }
-
     return (
-        <StyledContainer>
+        <>
             {
                 options.map(el => 
-                    <OptionContainer
-                        key={el.id}
-                        color={(showRight && userAnswer === el.id) ? (el.isRight ? "right" : "wrong") : "none"}
-                        withhover={showRight}
-                    >
-                        <input
+                    // <OptionContainer
+                    //     key={el.id}
+                    //     color={(showRight && userAnswer === el.id) ? (el.isRight ? "right" : "wrong") : "none"}
+                    //     withhover={showRight}
+                    // >
+                        <FormControlLabel
+                            value={el.id}
+                            control={<Radio />}
+                            label={el.answer}
                             disabled={showRight}
-                            type="radio"
                             name="option"
                             id={el.id}
-                            value={el.id}
-                            onClick={() => setAnswerHandler(el.id)}
+                            onClick={() => setAnswer(el.id)}
                             checked={userAnswer === el.id}
+                            color={(showRight && userAnswer === el.id) ? (el.isRight ? "#87b362" : "#cd6858") : "#e4dfdf"}
                         />
-                        <label htmlFor={el.id}>{el.answer}</label>
-                    </OptionContainer>
+                    // </OptionContainer>
                 )
             }
-        </StyledContainer>
+        </>
     )
 }
-
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-`
 
 const OptionContainer = styled.div<{color: "none" | "right" | "wrong", withhover: boolean}>`
     background-color: ${props => props.color !== "none" ? (props.color === "right" ? "#87b362" : "#cd6858") : "#e4dfdf"};
@@ -57,10 +51,5 @@ const OptionContainer = styled.div<{color: "none" | "right" | "wrong", withhover
 
     &:hover {
         background-color: ${props => props.withhover ? "none" : "beige"}
-    }
-
-    label {
-        width: 100%;
-        color: #2a2f33;
     }
 `

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { v1 } from 'uuid';
 import { Questions } from './components/Questions';
@@ -7,6 +7,14 @@ import { Link } from './components/Link';
 import { htmlQuestions } from './questions/html/HtmlQuestions';
 import { cssQuestions } from './questions/css/CssQuestions';
 import backArrow from './assets/left-back-arrow.svg'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Switch from '@mui/material/Switch';
+import MenuIcon from '@mui/icons-material/Menu'
+import Button from '@mui/material/Button';
 
 export type OptionType = {
     id: string
@@ -48,25 +56,53 @@ const topics: TopicType[] = [
 
 function App() {
 
-    let [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+    const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+    type ThemeMode = 'dark' | 'light'
 
     const goToMain = () => {
         setSelectedTopic(null);
     }
 
-    const chooseTopicHandler = (topicId: string) => {
-        setSelectedTopic(topicId);
-    }
+    //theme
+    const [themeMode, setThemeMode] = useState<ThemeMode>('light')
+
+	const theme = createTheme({
+		palette: {
+			mode: themeMode === 'light' ? 'light' : 'dark',
+			primary: {
+				main: '#087EA4',
+			},
+		},
+	})
+
+	const changeModeHandler = () => {
+		setThemeMode(themeMode == 'light' ? 'dark' : 'light')
+	}
 
     return (
         <div className="App">
-            {selectedTopic && <Link onClick={goToMain}><img style={{width: "12px"}} src={backArrow} alt="Back"/> Back to topics</Link>}
-            <h2 style={{alignSelf: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
-            {
-                selectedTopic
-                ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
-                : <Topics topics={topics} chooseTopic={chooseTopicHandler}/>
-            }
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <AppBar position="static" sx={{ mb: '30px' }}>
+					<Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+						<IconButton color="inherit">
+							<MenuIcon />
+						</IconButton>
+						<div>
+							<Button>Login</Button>
+							<Button>Logout</Button>
+							<Switch color={'default'} onChange={changeModeHandler} />
+						</div>
+					</Toolbar>
+				</AppBar>
+                {selectedTopic && <Link onClick={goToMain}><img style={{width: "12px"}} src={backArrow} alt="Back"/> Back to topics</Link>}
+                <h2 style={{alignSelf: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
+                {
+                    selectedTopic
+                    ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
+                    : <Topics topics={topics} chooseTopic={setSelectedTopic}/>
+                }
+            </ThemeProvider>
         </div>
     );
 }

@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import Radio from "@mui/material/Radio"
+
 
 type ProgressProps = {
     answers: { id: number, isRight: boolean, isDone: boolean }[]
@@ -7,28 +8,24 @@ type ProgressProps = {
 }
 
 export const Progress = ({ answers, questionNumber, setQuestionNumber }: ProgressProps) => {
+
     return (
         <div>
             <span>{questionNumber}/{answers.length}</span>
             {
                 answers.map((el, index) =>
-                <ProgressRound
-                    onClick={() => setQuestionNumber(index)}
-                    color={el.isDone ? el.isRight ? "right" : "wrong" : "none"}
-                    key={el.id}
-                    isSelected={index === questionNumber - 1}
-                />
+                    <Radio
+                        key={el.id}
+                        onChange={() => setQuestionNumber(index)}
+                        checked={index === questionNumber - 1}
+                        sx={{
+                            color: (el.isDone ? (el.isRight ? "#87b362" : "#cd6858") : "#cecfcd"),
+                            '&.Mui-checked': {
+                                color: (el.isDone ? el.isRight ? "#87b362" : "#cd6858" : "#cecfcd"),
+                            },
+                        }}
+                    />
             )}
         </div>
     )
 }
-
-const ProgressRound = styled.span<{color: "none" | "right" | "wrong", isSelected: boolean}>`
-    display: inline-block;
-    background-color: ${props => props.color !== "none" ? (props.color === "right" ? "#87b362" : "#cd6858") : "#cecfcd"};
-    width: ${props => props.isSelected ? "8px" : "10px"};
-    height: ${props => props.isSelected ? "8px" : "10px"};
-    border-radius: 90%;
-    margin-left: 6px;
-    border: ${props => props.isSelected ? "2px solid white" : "none"};
-`

@@ -138,3 +138,53 @@ export const htmlQuestions: QuestionType[] = [
         answerDescription: "https://developer.mozilla.org/ru/docs/Web/HTML/Element/body",
     },
 ];
+
+/*
+Тестовые вопросы о таблицах в HTML:
+1. Какой тег используется для создания таблицы в HTML?
+
+a) <table>
+b) <tr>
+c) <td>
+d) <th>
+
+2. Какой тег определяет строку в таблице?
+
+a) <table>
+b) <tr>
+c) <td>
+d) <th>
+
+3. Какой тег используется для создания ячейки данных в таблице?
+
+a) <table>
+b) <tr>
+c) <td>
+d) <th>
+
+4. Какой тег используется для создания ячейки заголовка в таблице?
+
+a) <table>
+b) <tr>
+c) <td>
+d) <th>
+
+5. Какой атрибут используется для объединения ячеек по горизонтали?
+
+a) colspan
+b) rowspan
+c) width
+d) height
+
+Ответы:
+
+a) <table>
+
+b) <tr>
+
+c) <td>
+
+d) <th>
+
+a) colspan
+*/
