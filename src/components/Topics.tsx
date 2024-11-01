@@ -11,11 +11,11 @@ export const Topics = ({ topics, chooseTopic }: TopicsProps) => {
     return (
         <List>
             {topics.map(el => 
-                <ListItem key={el.id}>
+                <ListItem key={el.id} sx={{flexDirection: "column", alignItems: "flex-start"}}>
                     <h3>
                         <Link onClick={() => chooseTopic(el.id)}>{el.title}</Link>
                     </h3>
-                    <p>{el.description}</p>
+                    <span>{el.description}</span>
                 </ListItem>
             )}
         </List>

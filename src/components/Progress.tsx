@@ -18,11 +18,13 @@ export const Progress = ({ answers, questionNumber, setQuestionNumber }: Progres
                         key={el.id}
                         onChange={() => setQuestionNumber(index)}
                         checked={index === questionNumber - 1}
+                        size="small"
                         sx={{
                             color: (el.isDone ? (el.isRight ? "#87b362" : "#cd6858") : "#cecfcd"),
                             '&.Mui-checked': {
                                 color: (el.isDone ? el.isRight ? "#87b362" : "#cd6858" : "#cecfcd"),
                             },
+                            p:"2px"
                         }}
                     />
             )}

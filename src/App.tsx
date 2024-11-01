@@ -6,7 +6,6 @@ import { Topics } from './components/Topics';
 import { Link } from './components/Link';
 import { htmlQuestions } from './questions/html/HtmlQuestions';
 import { cssQuestions } from './questions/css/CssQuestions';
-import backArrow from './assets/left-back-arrow.svg'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -15,6 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import Switch from '@mui/material/Switch';
 import MenuIcon from '@mui/icons-material/Menu'
 import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Container } from '@mui/material';
 
 export type OptionType = {
     id: string
@@ -85,23 +86,25 @@ function App() {
                 <CssBaseline />
                 <AppBar position="static" sx={{ mb: '30px' }}>
 					<Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-						<IconButton color="inherit">
+						{/* <IconButton color="inherit">
 							<MenuIcon />
-						</IconButton>
+						</IconButton> */}
 						<div>
-							<Button>Login</Button>
-							<Button>Logout</Button>
+							{/* <Button>Login</Button>
+							<Button>Logout</Button> */}
 							<Switch color={'default'} onChange={changeModeHandler} />
 						</div>
 					</Toolbar>
 				</AppBar>
-                {selectedTopic && <Link onClick={goToMain}><img style={{width: "12px"}} src={backArrow} alt="Back"/> Back to topics</Link>}
-                <h2 style={{alignSelf: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
-                {
-                    selectedTopic
-                    ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
-                    : <Topics topics={topics} chooseTopic={setSelectedTopic}/>
-                }
+                <Container maxWidth="sm">
+                    {selectedTopic && <Link onClick={goToMain}><ArrowBackIcon/> Back to topics</Link>}
+                    <h2 style={{textAlign: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
+                    {
+                        selectedTopic
+                        ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
+                        : <Topics topics={topics} chooseTopic={setSelectedTopic}/>
+                    }
+                </Container>
             </ThemeProvider>
         </div>
     );

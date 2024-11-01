@@ -24,19 +24,24 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAns
 
     return (
             <form onSubmit={answerClickHandler}>
-                <FormControl variant="standard">
+                <FormControl variant="standard" fullWidth>
                     <FormLabel id="question">{question.question}</FormLabel>
                     <RadioGroup name="quiz" onChange={(e) => setUserAnswer(e.currentTarget.value)}>
                         {question.options.map(el => 
                             <FormControlLabel
                                 value={el.id}
-                                control={<Radio />}
+                                control={<Radio sx={{
+                                    color: ((isAnswerDone && userAnswer === el.id) ? (el.isRight ? "#87b362" : "#cd6858") : "#cecfcd"),
+                                    '&.Mui-checked': {
+                                        color: ((isAnswerDone && userAnswer === el.id) ? el.isRight ? "#87b362" : "#cd6858" : "#cecfcd"),
+                                    }
+                                }}/>}
                                 label={el.answer}
                                 disabled={isAnswerDone}
                                 name="option"
                                 id={el.id}
                                 checked={userAnswer === el.id}
-                                sx={{backgroundColor:(isAnswerDone && userAnswer === el.id) ? (el.isRight ? "#87b362" : "#cd6858") : ""}}
+                                key={el.id}
                             />
                         )}
                     </RadioGroup>
@@ -45,6 +50,7 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAns
                         title="Answer"
                         type="submit"
                         variant="outlined"
+                        sx={{alignSelf: "flex-end"}}
                     >Check Answer</Button> }
                 </FormControl>
             </form>

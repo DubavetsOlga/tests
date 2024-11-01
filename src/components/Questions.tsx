@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { QuestionType } from "../App"
 import { Question } from "./Question"
-import { Link } from "./Link";
 import Button from "@mui/material/Button";
 import { Progress } from "./Progress";
+import { Box, Link, Paper } from "@mui/material";
 
 type QuestionsProps = {
     questions: QuestionType[],
@@ -56,28 +56,30 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
     }
 
     return (
-        <>
-            <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={progressRoundClickHandler}/>
-            <Question
-                question={questions[questionNumber]}
-                setQuestionAnswer={setQuestionAnswer}
-                isAnswerDone={isAnswerDone}
-                setUserAnswer={setUserAnswer}
-                userAnswer={answers[questionNumber].userAnswer}
-            />
-            {isAnswerDone &&
-                <>
-                    <Button onClick={isLastQuestion ? onFinish : nextQuestion} variant="outlined">
-                        {isLastQuestion ? "Finish" : "Next"}
-                    </Button>
-                    <div>
-                        {answers[questionNumber].isRight ? "👍" : "😔"}
-                        <Link href={questions[questionNumber].answerDescription}>
-                            Read About
-                        </Link>
-                    </div>
-                </>
-            }
-        </>
+        <Box>
+            <Paper sx={{p:2, display:"flex", flexDirection:"column"}}>
+                <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={progressRoundClickHandler}/>
+                <Question
+                    question={questions[questionNumber]}
+                    setQuestionAnswer={setQuestionAnswer}
+                    isAnswerDone={isAnswerDone}
+                    setUserAnswer={setUserAnswer}
+                    userAnswer={answers[questionNumber].userAnswer}
+                />
+                {isAnswerDone &&
+                    <>
+                        <Button onClick={isLastQuestion ? onFinish : nextQuestion} variant="outlined" sx={{alignSelf: "flex-end"}}>
+                            {isLastQuestion ? "Finish" : "Next"}
+                        </Button>
+                        <div>
+                            {answers[questionNumber].isRight ? "👍" : "😔"}
+                            <Link href={questions[questionNumber].answerDescription}>
+                                Read About
+                            </Link>
+                        </div>
+                    </>
+                }
+            </Paper>
+        </Box>
     )
 }
