@@ -5,6 +5,7 @@ import RadioGroup from "@mui/material/RadioGroup"
 import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio"
 import FormControlLabel from "@mui/material/FormControlLabel"
+import { FormEvent } from "react";
 
 
 type QuestionProps = {
@@ -17,7 +18,7 @@ type QuestionProps = {
 
 export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAnswer, userAnswer }: QuestionProps) => {
 
-    const answerClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const answerClickHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setQuestionAnswer(!!question.options.find(el => el.id === userAnswer)?.isRight);
     }

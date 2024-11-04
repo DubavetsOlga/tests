@@ -27,48 +27,44 @@ const answersInition = (count: number) => {
 }
 
 export const Questions = ({ questions, onFinish }: QuestionsProps) => {
+    const answersInit = answersInition(questions.length);
+
     const [questionNumber, setQuestionNumber] = useState(0);
-    const [isAnswerDone, setIsAnswerDone] = useState(false);
-    const [answers, setAnswers] = useState<answerType[]>(answersInition(questions.length));
+    const [answers, setAnswers] = useState<answerType[]>(answersInit);
 
     const isLastQuestion = questionNumber === questions.length - 1;
 
-    const nextQuestion = () => {
-        setQuestionNumber(questionNumber + 1);
-        setIsAnswerDone(false);
-    }
-
     const setQuestionAnswer = (isRight: boolean) => {
-        setIsAnswerDone(true);
-        answers[questionNumber].isDone = true;
-        answers[questionNumber].isRight = isRight;
-        setAnswers([...answers]);
-    }
-
-    const progressRoundClickHandler = (number: number) => {
-        setIsAnswerDone(answers[number].isDone);
-        setQuestionNumber(number);
+        const newAnswers = [...answers]
+        newAnswers[questionNumber].isDone = true;
+        newAnswers[questionNumber].isRight = isRight;
+        setAnswers(newAnswers);
     }
 
     const setUserAnswer = (answerId: string) => {
-        answers[questionNumber].userAnswer = answerId;
-        setAnswers([...answers]);
+        const newAnswers = [...answers];
+        newAnswers[questionNumber].userAnswer = answerId;
+        setAnswers(newAnswers);
+    }
+
+    const handleClickNext = () => {
+        return isLastQuestion ? onFinish() : setQuestionNumber(questionNumber + 1);
     }
 
     return (
         <Box>
             <Paper sx={{p:2, display:"flex", flexDirection:"column"}}>
-                <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={progressRoundClickHandler}/>
+                <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={setQuestionNumber}/>
                 <Question
                     question={questions[questionNumber]}
                     setQuestionAnswer={setQuestionAnswer}
-                    isAnswerDone={isAnswerDone}
+                    isAnswerDone={answers[questionNumber].isDone}
                     setUserAnswer={setUserAnswer}
                     userAnswer={answers[questionNumber].userAnswer}
                 />
-                {isAnswerDone &&
+                {answers[questionNumber].isDone &&
                     <>
-                        <Button onClick={isLastQuestion ? onFinish : nextQuestion} variant="outlined" sx={{alignSelf: "flex-end"}}>
+                        <Button onClick={handleClickNext} variant="outlined" sx={{alignSelf: "flex-end"}}>
                             {isLastQuestion ? "Finish" : "Next"}
                         </Button>
                         <div>

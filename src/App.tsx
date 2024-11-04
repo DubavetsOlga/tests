@@ -98,11 +98,15 @@ function App() {
 				</AppBar>
                 <Container maxWidth="sm">
                     {selectedTopic && <Link onClick={goToMain}><ArrowBackIcon/> Back to topics</Link>}
-                    <h2 style={{textAlign: "center"}}>{selectedTopic ? topics.find(el => el.id === selectedTopic)?.title : "Choose topic"}</h2>
+                    <h2 style={{textAlign: "center"}}>
+                        {selectedTopic 
+                            ? topics.find(el => el.id === selectedTopic)?.title 
+                            : "Choose topic"}
+                    </h2>
                     {
                         selectedTopic
                         ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
-                        : <Topics topics={topics} chooseTopic={setSelectedTopic}/>
+                        : <Topics topics={topics} setSelectedTopic={setSelectedTopic}/>
                     }
                 </Container>
             </ThemeProvider>
