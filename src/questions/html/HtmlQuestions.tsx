@@ -28,6 +28,7 @@ export const htmlQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/tags/att_a_target.asp",
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -55,6 +56,7 @@ export const htmlQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/tags/tag_tbody.asp",
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -82,6 +84,7 @@ export const htmlQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/tags/att_img_alt.asp",
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -109,6 +112,7 @@ export const htmlQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/tags/att_form_action.asp",
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -136,6 +140,7 @@ export const htmlQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://developer.mozilla.org/ru/docs/Web/HTML/Element/body",
+        type: "oneAnswer",
     },
 ];
 

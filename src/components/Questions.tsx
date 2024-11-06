@@ -14,13 +14,13 @@ type answerType = {
     id: number
     isRight: boolean
     isDone: boolean
-    userAnswer: null | string
+    userAnswers: String[]
 }
 
 const answersInition = (count: number) => {
     const answersInit: answerType[] = [];
     for (let i = 0; i < count; i++) {
-        answersInit.push({ id: i, isRight: false, isDone: false, userAnswer: null });
+        answersInit.push({ id: i, isRight: false, isDone: false, userAnswers: [] });
     }
 
     return answersInit;
@@ -37,13 +37,19 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
     const setQuestionAnswer = (isRight: boolean) => {
         const newAnswers = [...answers]
         newAnswers[questionNumber].isDone = true;
-        newAnswers[questionNumber].isRight = isRight;
+        newAnswers[questionNumber].isRight = isRight
         setAnswers(newAnswers);
     }
 
-    const setUserAnswer = (answerId: string) => {
-        const newAnswers = [...answers];
-        newAnswers[questionNumber].userAnswer = answerId;
+    const setUserAnswer = (answerId: string, isCheked: boolean | null) => {
+        let newAnswers = [...answers];
+        if (isCheked === null) {
+            newAnswers[questionNumber].userAnswers = [answerId]
+        } else if (isCheked) {
+            newAnswers[questionNumber].userAnswers = [...newAnswers[questionNumber].userAnswers, answerId]
+        } else {
+            newAnswers[questionNumber].userAnswers = newAnswers[questionNumber].userAnswers.filter(el => el !== answerId);
+        }
         setAnswers(newAnswers);
     }
 
@@ -60,7 +66,7 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
                     setQuestionAnswer={setQuestionAnswer}
                     isAnswerDone={answers[questionNumber].isDone}
                     setUserAnswer={setUserAnswer}
-                    userAnswer={answers[questionNumber].userAnswer}
+                    userAnswers={answers[questionNumber].userAnswers}
                 />
                 {answers[questionNumber].isDone &&
                     <>

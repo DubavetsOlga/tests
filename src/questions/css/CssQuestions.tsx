@@ -28,6 +28,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties",
+        type: "oneAnswer"
     },
     {
         id: v1(),
@@ -55,6 +56,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/cssref/pr_text_text-align.php",
+        type: "oneAnswer"
     },
     {
         id: v1(),
@@ -82,6 +84,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/cssref/css3_pr_box-shadow.php",
+        type: "oneAnswer"
     },
     {
         id: v1(),
@@ -109,6 +112,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/css/css_positioning.asp",
+        type: "oneAnswer"
     },
     {
         id: v1(),
@@ -136,5 +140,34 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode",
+        type: "oneAnswer",
+    },
+    {
+        id: v1(),
+        question: "?",
+        options: [
+            {
+                id: v1(),
+                answer: "1",
+                isRight: false,
+            },
+            {
+                id: v1(),
+                answer: "2",
+                isRight: true,
+            },
+            {
+                id: v1(),
+                answer: "3",
+                isRight: false,
+            },
+            {
+                id: v1(),
+                answer: "4",
+                isRight: true,
+            },
+        ],
+        answerDescription: "",
+        type: "severalAnswers",
     },
 ];

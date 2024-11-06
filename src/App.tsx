@@ -28,6 +28,7 @@ export type QuestionType = {
     question: string
     options: OptionType[]
     answerDescription: string
+    type: "oneAnswer" | "severalAnswers" | "text"
 }
 
 export type TopicType = {
@@ -51,7 +52,7 @@ const topics: TopicType[] = [
         id: v1(),
         title: "CSS",
         questions: questionsCSS,
-        description: "5 questions about base CSS"
+        description: "6 questions about base CSS"
     },
 ];
 
