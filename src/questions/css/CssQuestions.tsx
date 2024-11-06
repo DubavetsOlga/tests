@@ -144,30 +144,30 @@ export const cssQuestions: QuestionType[] = [
     },
     {
         id: v1(),
-        question: "?",
+        question: "Какие из перечисленных CSS-свойств можно анимировать?",
         options: [
             {
                 id: v1(),
-                answer: "1",
+                answer: "display",
                 isRight: false,
             },
             {
                 id: v1(),
-                answer: "2",
+                answer: "font-size",
                 isRight: true,
             },
             {
                 id: v1(),
-                answer: "3",
-                isRight: false,
+                answer: "opacity",
+                isRight: true,
             },
             {
                 id: v1(),
-                answer: "4",
+                answer: "margin",
                 isRight: true,
             },
         ],
-        answerDescription: "",
+        answerDescription: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties",
         type: "severalAnswers",
     },
 ];
