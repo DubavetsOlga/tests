@@ -56,6 +56,8 @@ const topics: TopicType[] = [
     },
 ];
 
+const themeSaved = localStorage.getItem('theme') ?? 'light'
+
 function App() {
 
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -66,7 +68,7 @@ function App() {
     }
 
     //theme
-    const [themeMode, setThemeMode] = useState<ThemeMode>('light')
+    const [themeMode, setThemeMode] = useState<ThemeMode>(themeSaved as ThemeMode)
 
 	const theme = createTheme({
 		palette: {
@@ -78,7 +80,8 @@ function App() {
 	})
 
 	const changeModeHandler = () => {
-		setThemeMode(themeMode == 'light' ? 'dark' : 'light')
+		setThemeMode(themeMode === 'light' ? 'dark' : 'light')
+        localStorage.setItem('theme', themeMode === 'light' ? 'dark' : 'light')
 	}
 
     return (
@@ -93,7 +96,7 @@ function App() {
 						<div>
 							{/* <Button>Login</Button>
 							<Button>Logout</Button> */}
-							<Switch color={'default'} onChange={changeModeHandler} />
+							<Switch color={'default'} onChange={changeModeHandler} defaultChecked={themeSaved === 'dark'}/>
 						</div>
 					</Toolbar>
 				</AppBar>
