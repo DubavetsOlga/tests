@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, List, ListItem, TextField } from "@mui/material";
+import { Button, ButtonGroup, Checkbox, List, ListItem, MenuItem, Select, TextField } from "@mui/material";
 import { TopicType } from "../App";
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
@@ -31,6 +31,11 @@ export const Edit = ({ topics, changeTopic }: EditTopicsProps) => {
         setEditQuestionMode(false)
     }
 
+    const handleClickCancel = () => {
+        setEditElementId(null)
+        setEditQuestionMode(false)
+    }
+
     return (
         <>
         <List>
@@ -52,24 +57,35 @@ export const Edit = ({ topics, changeTopic }: EditTopicsProps) => {
                                     <Button onClick={handleClickChangeQuestions}>Change Questions</Button>
                                     <Button onClick={handleClickSaveChanges}>Save</Button>
                                     <Button onClick={handleClickDeleteTopic}>Delete</Button>
-                                    <Button onClick={() => setEditElementId(null)}>Cancel</Button>
+                                    <Button onClick={handleClickCancel}>Cancel</Button>
                                 </ButtonGroup>
                             </>
                     }
 
                 </ListItem>
             )}
+            </List>
             {editQuestionMode && topics.filter(el => el.id === editElementId)[0].questions.map(el => 
-                <ListItem key={el.id}>
+                <div key={el.id}>
                     <TextField required label="Title" value={el.question}/>
-                </ListItem>
+                    <Select labelId="select-label" id={el.id} value={el.type} label="Type">
+                        <MenuItem value={"oneAnswer"}>one answer</MenuItem>
+                        <MenuItem value={"severalAnswers"}>several answers</MenuItem>
+                        <MenuItem value={"text"}>text</MenuItem>
+                    </Select>
+                    {el.options.map(q => 
+                        <div>
+                            <TextField required value={q.answer}/>
+                            <Checkbox checked={q.isRight}/> Is Right?
+                        </div>
+                    )}
+                </div>
             )
             }
-        </List>
         {editQuestionMode && 
             <ButtonGroup variant="contained">
                 <Button onClick={handleClickSaveQuestions}>Save</Button>
-                <Button onClick={() => {setEditElementId(null); setEditQuestionMode(false)}}>Cancel</Button>
+                <Button onClick={handleClickCancel}>Cancel</Button>
             </ButtonGroup>
         }
         </>
