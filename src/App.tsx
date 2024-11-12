@@ -103,7 +103,7 @@ function App() {
 						<div>
 							{/* <Button>Login</Button>
 							<Button>Logout</Button> */}
-                            <Button onClick={handleClickChangeMode}>{isEditMode ? "Test Mode" : "Change Mode"}</Button>
+                            <Button variant="contained" onClick={handleClickChangeMode}>{isEditMode ? "Test Mode" : "Change Mode"}</Button>
 							<Switch color={'default'} onChange={handleClickChangeTheme} defaultChecked={themeSaved === 'dark'}/>
 						</div>
 					</Toolbar>
