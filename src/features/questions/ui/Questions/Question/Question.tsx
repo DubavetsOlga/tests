@@ -1,13 +1,13 @@
-import { OptionType, QuestionType } from "../App"
 import FormControl from "@mui/material/FormControl"
 import FormLabel from "@mui/material/FormLabel"
 import RadioGroup from "@mui/material/RadioGroup"
 import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio"
 import FormControlLabel from "@mui/material/FormControlLabel"
-import { FormEvent } from "react";
+import { FormEvent, memo } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
+import { OptionType, QuestionType } from "../../../../../app/Main";
 
 
 type QuestionProps = {
@@ -18,7 +18,7 @@ type QuestionProps = {
     userAnswers: String[]
 }
 
-export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAnswer, userAnswers }: QuestionProps) => {
+export const Question = memo(({ question, setQuestionAnswer, isAnswerDone, setUserAnswer, userAnswers }: QuestionProps) => {
 
     const answerClickHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -29,7 +29,7 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAns
     }
 
     const optionColor = (el: OptionType) => {
-        const color = (isAnswerDone && userAnswers .includes(el.id)) ? (el.isRight ? "#87b362" : "#cd6858") : "#cecfcd"
+        const color = (isAnswerDone && userAnswers.includes(el.id)) ? (el.isRight ? "#87b362" : "#cd6858") : "#cecfcd"
         return {
             color: color,
             '&.Mui-checked': {
@@ -90,4 +90,4 @@ export const Question = ({ question, setQuestionAnswer, isAnswerDone, setUserAns
                 </FormControl>
             </form>
     )
-}
+})

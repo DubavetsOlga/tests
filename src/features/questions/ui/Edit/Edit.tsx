@@ -1,8 +1,7 @@
 import { Button, ButtonGroup, Checkbox, List, ListItem, MenuItem, Select, TextField } from "@mui/material";
-import { TopicType } from "../App";
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
-import { Link } from "./Link";
+import {TopicType} from "../../../../app/Main";
 
 type EditTopicsProps = {
     topics: TopicType[],

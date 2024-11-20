@@ -1,13 +1,14 @@
 import { List, ListItem } from "@mui/material";
-import { TopicType } from "../App";
-import { Link } from "./Link";
+import { Link } from "../../../../common/components/Link/Link";
+import { TopicType } from "../../../../app/Main";
+import { memo } from "react";
 
 type TopicsProps = {
     topics: TopicType[],
     setSelectedTopic: (topicId: string) => void
 }
 
-export const Topics = ({ topics, setSelectedTopic }: TopicsProps) => {
+export const Topics = memo(({ topics, setSelectedTopic }: TopicsProps) => {
     return (
         <List>
             {topics.map(el => 
@@ -20,4 +21,4 @@ export const Topics = ({ topics, setSelectedTopic }: TopicsProps) => {
             )}
         </List>
     )
-}
+})

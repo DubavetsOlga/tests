@@ -1,5 +1,5 @@
 import Radio from "@mui/material/Radio"
-
+import { memo } from "react";
 
 type ProgressProps = {
     answers: { id: number, isRight: boolean, isDone: boolean }[]
@@ -7,7 +7,7 @@ type ProgressProps = {
     setQuestionNumber: (number: number) => void
 }
 
-export const Progress = ({ answers, questionNumber, setQuestionNumber }: ProgressProps) => {
+export const Progress = memo(({ answers, questionNumber, setQuestionNumber }: ProgressProps) => {
 
     return (
         <div>
@@ -30,4 +30,4 @@ export const Progress = ({ answers, questionNumber, setQuestionNumber }: Progres
             )}
         </div>
     )
-}
+})

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { QuestionType } from "../App"
-import { Question } from "./Question"
+import { Question } from "./Question/Question"
 import Button from "@mui/material/Button";
-import { Progress } from "./Progress";
+import { Progress } from "./Progress/Progress";
 import { Box, Link, Paper } from "@mui/material";
+import { QuestionType } from "../../../../app/Main";
 
 type QuestionsProps = {
     questions: QuestionType[],
@@ -41,11 +41,11 @@ export const Questions = ({ questions, onFinish }: QuestionsProps) => {
         setAnswers(newAnswers);
     }
 
-    const setUserAnswer = (answerId: string, isCheked: boolean | null) => {
+    const setUserAnswer = (answerId: string, isChecked: boolean | null) => {
         let newAnswers = [...answers];
-        if (isCheked === null) {
+        if (isChecked === null) {
             newAnswers[questionNumber].userAnswers = [answerId]
-        } else if (isCheked) {
+        } else if (isChecked) {
             newAnswers[questionNumber].userAnswers = [...newAnswers[questionNumber].userAnswers, answerId]
         } else {
             newAnswers[questionNumber].userAnswers = newAnswers[questionNumber].userAnswers.filter(el => el !== answerId);

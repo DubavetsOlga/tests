@@ -1,5 +1,5 @@
 import { v1 } from 'uuid';
-import { QuestionType } from '../../App';
+import {QuestionType} from "../../app/Main";
 
 export const htmlQuestions: QuestionType[] = [
     {
