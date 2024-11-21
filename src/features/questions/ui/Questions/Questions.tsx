@@ -3,10 +3,12 @@ import { Question } from "./Question/Question"
 import Button from "@mui/material/Button";
 import { Progress } from "./Progress/Progress";
 import { Box, Link, Paper } from "@mui/material";
-import { QuestionType } from "../../../../app/Main";
+import {QuestionKeys, QuestionType} from "../../../../app/Main";
+import {useAppSelector} from "../../../../common/hooks/useAppSelector";
+import {selectQuestions} from "../../../../app/appSelectors";
 
 type QuestionsProps = {
-    questions: QuestionType[],
+    questionsKey: QuestionKeys,
     onFinish: () => void
 }
 
@@ -26,7 +28,8 @@ const answersInition = (count: number) => {
     return answersInit;
 }
 
-export const Questions = ({ questions, onFinish }: QuestionsProps) => {
+export const Questions = ({ questionsKey, onFinish }: QuestionsProps) => {
+    const questions = useAppSelector(selectQuestions)[questionsKey]
     const answersInit = answersInition(questions.length);
 
     const [questionNumber, setQuestionNumber] = useState(0);

@@ -4,8 +4,8 @@ import { questionsReducer } from "../features/questions/model/questions-reducer"
 import { topicsReducer } from "../features/questions/model/topics-reducer";
 
 const rootReducer = combineReducers({
-    // questions: questionsReducer,
-    // topics: topicsReducer,
+    questions: questionsReducer,
+    topics: topicsReducer,
     app: appReducer,
 })
 

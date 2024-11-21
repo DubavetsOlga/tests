@@ -1,8 +1,7 @@
-import {RootState} from "./store";
-//import {useAppSelector} from "../common/hooks/useAppSelector";
+import { RootState } from "./store";
 
 export const selectThemeMode = (state: RootState) => state.app.themeMode
 
-// export const selectTodolists = (state: RootState) => state.todolists
-//
-// export const selectTasks = (state: RootState) => state.tasks
+export const selectTopics = (state: RootState) => state.topics
+
+export const selectQuestions = (state: RootState) => state.questions

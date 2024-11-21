@@ -1,7 +1,9 @@
 import { Button, ButtonGroup, Checkbox, List, ListItem, MenuItem, Select, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
-import {TopicType} from "../../../../app/Main";
+import { TopicType } from "../../../../app/Main";
+import { useAppSelector } from "../../../../common/hooks/useAppSelector";
+import { selectQuestions } from "../../../../app/appSelectors";
 
 type EditTopicsProps = {
     topics: TopicType[],
@@ -9,6 +11,7 @@ type EditTopicsProps = {
 }
 
 export const Edit = ({ topics, changeTopic }: EditTopicsProps) => {
+    const questions = useAppSelector(selectQuestions)
     const [editElementId, setEditElementId] = useState<string | null>(null)
     const [editQuestionMode, setEditQuestionMode] = useState(false)
 
@@ -64,7 +67,7 @@ export const Edit = ({ topics, changeTopic }: EditTopicsProps) => {
                 </ListItem>
             )}
             </List>
-            {editQuestionMode && topics.filter(el => el.id === editElementId)[0].questions.map(el => 
+            {editQuestionMode && questions[topics.filter(el => el.id === editElementId)[0].questionsKey].map(el =>
                 <div key={el.id}>
                     <TextField required label="Title" value={el.question}/>
                     <Select labelId="select-label" id={el.id} value={el.type} label="Type">

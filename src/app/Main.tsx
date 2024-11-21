@@ -5,10 +5,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Questions } from "../features/questions/ui/Questions/Questions";
 import { Topics } from "../features/questions/ui/Topics/Topics";
 import {useCallback, useState} from "react";
-import { htmlQuestions } from "../questions/html/HtmlQuestions";
-import { cssQuestions } from "../questions/css/CssQuestions";
-import { v1 } from "uuid";
 import { useAppSelector } from "../common/hooks/useAppSelector";
+import { selectTopics } from "./appSelectors";
 
 export type OptionType = {
     id: string
@@ -24,29 +22,18 @@ export type QuestionType = {
     type: "oneAnswer" | "severalAnswers" | "text"
 }
 
+export type QuestionKeys = "html" | "css"
+
 export type TopicType = {
     id: string
     title: string
-    questions: QuestionType[]
+    questionsKey: QuestionKeys
     description: string
 }
 
-const topics: TopicType[] = [
-    {
-        id: v1(),
-        title: "HTML",
-        questions: htmlQuestions,
-        description: "5 questions about base HTML"
-    },
-    {
-        id: v1(),
-        title: "CSS",
-        questions: cssQuestions,
-        description: "6 questions about base CSS"
-    },
-];
-
 export const Main = () => {
+    const topics = useAppSelector(selectTopics)
+
     const isEditMode = useAppSelector(state => state.app.editMode)
 
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -72,7 +59,7 @@ export const Main = () => {
                     </h2>
                     {
                         selectedTopic
-                            ? <Questions questions={topics.filter(el => el.id === selectedTopic)[0].questions} onFinish={goToMain}/>
+                            ? <Questions questionsKey={topics.filter(el => el.id === selectedTopic)[0].questionsKey} onFinish={goToMain}/>
                             : <Topics topics={topics} setSelectedTopic={setSelectedTopic}/>
                     }
                 </Container>
