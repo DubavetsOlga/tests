@@ -22,7 +22,8 @@ export const questionsReducer = (
             return state
         case 'CHANGE_QUESTION_DESCRIPTION':
             return state
-        //change type?
+        case 'CHANGE_QUESTION_TYPE':
+            return state;
         //add/change/delete options (title, right)
         default:
             return state
@@ -58,13 +59,22 @@ export const changeQuestionDescriptionAC = (payload: { key: string, id: string, 
     } as const
 }
 
+export const changeQuestionTypeAC = (payload: { key: string, id: string, type: QuestionType}) => {
+    return {
+        type: 'CHANGE_QUESTION_TYPE',
+        payload: payload
+    } as const
+}
+
 // Actions types
 type AddQuestionActionType =  ReturnType<typeof addQuestionAC>
 type DeleteQuestionActionType =  ReturnType<typeof deleteQuestionAC>
 type ChangeQuestionTitleActionType =  ReturnType<typeof changeQuestionTitleAC>
 type ChangeQuestionDescriptionActionType =  ReturnType<typeof changeQuestionDescriptionAC>
+type ChangeQuestionTypeActionType =  ReturnType<typeof changeQuestionTypeAC>
 
 type ActionsType = AddQuestionActionType
     | DeleteQuestionActionType
     | ChangeQuestionTitleActionType
     | ChangeQuestionDescriptionActionType
+    | ChangeQuestionTypeActionType
