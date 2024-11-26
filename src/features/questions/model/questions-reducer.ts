@@ -24,7 +24,14 @@ export const questionsReducer = (
             return state
         case 'CHANGE_QUESTION_TYPE':
             return state;
-        //add/change/delete options (title, right)
+        case 'ADD_QUESTION_OPTION':
+            return state;
+        case 'DELETE_QUESTION_OPTION':
+            return state;
+        case 'CHANGE_QUESTION_OPTION_TITLE':
+            return state;
+        case 'CHANGE_QUESTION_OPTION_RIGHT':
+            return state;
         default:
             return state
     }
@@ -66,15 +73,51 @@ export const changeQuestionTypeAC = (payload: { key: string, id: string, type: Q
     } as const
 }
 
+export const addQuestionOptionAC = (payload: { title: string, isRight: boolean }) => {
+    return {
+        type: 'ADD_QUESTION_OPTION',
+        payload: { payload }
+    } as const
+}
+
+export const deleteQuestionOptionAC = (payload: { id: string}) => {
+    return {
+        type: 'DELETE_QUESTION_OPTION',
+        payload: payload
+    } as const
+}
+
+export const changeQuestionOptionTitleAC = (payload: { id: string, title: string}) => {
+    return {
+        type: 'CHANGE_QUESTION_OPTION_TITLE',
+        payload: payload
+    } as const
+}
+
+export const changeQuestionOptionRightAC = (payload: { id: string, isRight: boolean}) => {
+    return {
+        type: 'CHANGE_QUESTION_OPTION_RIGHT',
+        payload: payload
+    } as const
+}
+
 // Actions types
 type AddQuestionActionType =  ReturnType<typeof addQuestionAC>
 type DeleteQuestionActionType =  ReturnType<typeof deleteQuestionAC>
 type ChangeQuestionTitleActionType =  ReturnType<typeof changeQuestionTitleAC>
 type ChangeQuestionDescriptionActionType =  ReturnType<typeof changeQuestionDescriptionAC>
 type ChangeQuestionTypeActionType =  ReturnType<typeof changeQuestionTypeAC>
+type AddQuestionOptionType =  ReturnType<typeof addQuestionOptionAC>
+type DeleteQuestionOptionActionType =  ReturnType<typeof deleteQuestionOptionAC>
+type ChangeQuestionOptionTitleActionType =  ReturnType<typeof changeQuestionOptionTitleAC>
+type ChangeQuestionOptionRightActionType =  ReturnType<typeof changeQuestionOptionRightAC>
 
 type ActionsType = AddQuestionActionType
     | DeleteQuestionActionType
     | ChangeQuestionTitleActionType
     | ChangeQuestionDescriptionActionType
     | ChangeQuestionTypeActionType
+    | AddQuestionOptionType
+    | DeleteQuestionOptionActionType
+    | ChangeQuestionOptionTitleActionType
+    | ChangeQuestionOptionRightActionType
