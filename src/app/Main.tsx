@@ -46,7 +46,7 @@ export const Main = () => {
         <>
             {isEditMode &&
                 <Container maxWidth="md">
-                    <Edit topics={topics} changeTopic={() => {}}/>
+                    <Edit/>
                 </Container>
             }
             {!isEditMode &&
