@@ -4,12 +4,14 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Grid2 } from "@mui/material";
 
+
 type Props = {
     topic: TopicType
     setEditElementId: (value: string | null) => void
     setEditQuestionsMode: (value: boolean) => void
     handleClickCancel: () => void
 }
+
 
 export const EditTopic = ({ topic, setEditElementId, setEditQuestionsMode, handleClickCancel }: Props) => {
 

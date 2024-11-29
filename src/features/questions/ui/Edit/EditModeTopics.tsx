@@ -3,9 +3,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useAppSelector } from "../../../../common/hooks/useAppSelector";
 import { selectTopics } from "../../../../app/appSelectors";
 
+
 type Props = {
     setEditElementId: (value: string | null) => void
 }
+
 
 export const EditModeTopics = ({ setEditElementId}: Props) => {
     const topics = useAppSelector(selectTopics)

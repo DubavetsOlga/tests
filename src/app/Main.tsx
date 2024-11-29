@@ -8,6 +8,7 @@ import {useCallback, useState} from "react";
 import { useAppSelector } from "../common/hooks/useAppSelector";
 import { selectTopics } from "./appSelectors";
 
+
 export type OptionType = {
     id: string
     answer: string
@@ -30,6 +31,7 @@ export type TopicType = {
     questionsKey: QuestionKeys
     description: string
 }
+
 
 export const Main = () => {
     const topics = useAppSelector(selectTopics)

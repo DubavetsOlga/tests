@@ -2,11 +2,9 @@ import { useState } from "react";
 import { useAppSelector } from "../../../../common/hooks/useAppSelector";
 import { selectTopics } from "../../../../app/appSelectors";
 import { EditTopic } from "./EditTopic";
-import { EditQuestions } from "./EditQuestions";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import { EditModeTopics } from "./EditModeTopics";
 import { TopicType } from "../../../../app/Main";
+import { EditModeQuestions } from "./EditModeQuestions";
 
 
 export const Edit = () => {
@@ -22,7 +20,7 @@ export const Edit = () => {
     return (
         <>
             {editQuestionsMode
-                ? <EditQuestions
+                ? <EditModeQuestions
                         topicKey={topics.filter(el => el.id === editElementId)[0].questionsKey}
                         setEditElementId={setEditElementId}
                         setEditQuestionsMode={setEditQuestionsMode}
