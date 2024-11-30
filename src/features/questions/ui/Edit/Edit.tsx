@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useAppSelector } from "../../../../common/hooks/useAppSelector";
 import { selectTopics } from "../../../../app/appSelectors";
-import { EditTopic } from "./EditTopic";
 import { EditModeTopics } from "./EditModeTopics";
-import { TopicType } from "../../../../app/Main";
 import { EditModeQuestions } from "./EditModeQuestions";
 
 
@@ -26,14 +24,11 @@ export const Edit = () => {
                         setEditQuestionsMode={setEditQuestionsMode}
                         handleClickCancel={handleClickCancel}
                     />
-                : editElementId
-                    ? <EditTopic
-                            topic={topics.find(el => el.id === editElementId) as TopicType}
-                            setEditElementId={setEditElementId}
-                            setEditQuestionsMode={setEditQuestionsMode}
-                            handleClickCancel={handleClickCancel}
-                        />
-                    : <EditModeTopics setEditElementId={setEditElementId}/>
+                : <EditModeTopics
+                        setEditElementId={setEditElementId}
+                        handleClickCancel={handleClickCancel}
+                        setEditQuestionsMode={setEditQuestionsMode}
+                    />
                     
             }
         </>
