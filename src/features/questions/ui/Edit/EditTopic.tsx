@@ -3,6 +3,7 @@ import { TopicType } from "../../../../app/Main";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Grid2 } from "@mui/material";
+import { useState } from "react";
 
 
 type Props = {
@@ -14,13 +15,15 @@ type Props = {
 
 
 export const EditTopic = ({ topic, setEditElementId, setEditQuestionsMode, handleClickCancel }: Props) => {
+    const [title, setTitle] = useState(topic.title)
+    const [description, setDescription] = useState(topic.description)
 
     const handleClickSaveChanges = () => {
         setEditElementId(null)
         //dispatch change Topic
     }
 
-    const handleClickChangeQuestions = () => {
+    const handleClickToChangeQuestions = () => {
         setEditQuestionsMode(true)
     }
 
@@ -29,15 +32,24 @@ export const EditTopic = ({ topic, setEditElementId, setEditQuestionsMode, handl
         //dispatch delete Topic
     }
 
+    const handleClickChangeTitle = (title: string) => {
+        setTitle(title)
+    }
+
+    const handleClickChangeDescription = (description: string) => {
+        setDescription(description)
+    }
+
     return (
         <Grid2 container spacing={2} sx={{flexDirection:"column"}}>
-            <TextField required label="Title" value={topic.title}/>
-            <TextField label="Description" value={topic.description}/>
+            <TextField required label="Title" value={title} onChange={e => handleClickChangeTitle(e.currentTarget.value)}/>
+            <TextField label="Description" value={description} onChange={e => handleClickChangeDescription(e.currentTarget.value)}/>
+
             <ButtonGroup variant="contained">
                 <Button onClick={handleClickSaveChanges}>Save</Button>
                 <Button onClick={handleClickDeleteTopic}>Delete</Button>
                 <Button onClick={handleClickCancel}>Cancel</Button>
-                <Button onClick={handleClickChangeQuestions}>Change Questions</Button>
+                <Button onClick={handleClickToChangeQuestions}>Change Questions</Button>
             </ButtonGroup>
         </Grid2>
     )

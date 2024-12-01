@@ -9,6 +9,8 @@ import { useAppSelector } from "../common/hooks/useAppSelector";
 import { selectTopics } from "./appSelectors";
 
 
+export type QuestionTypes = "oneAnswer" | "severalAnswers" | "text"
+
 export type OptionType = {
     id: string
     answer: string
@@ -20,7 +22,7 @@ export type QuestionType = {
     question: string
     options: OptionType[]
     answerDescription: string
-    type: "oneAnswer" | "severalAnswers" | "text"
+    type: QuestionTypes
 }
 
 export type QuestionKeys = "html" | "css"
@@ -35,7 +37,6 @@ export type TopicType = {
 
 export const Main = () => {
     const topics = useAppSelector(selectTopics)
-
     const isEditMode = useAppSelector(state => state.app.editMode)
 
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -46,23 +47,20 @@ export const Main = () => {
 
     return (
         <>
-            {isEditMode &&
-                <Container maxWidth="md">
-                    <Edit/>
-                </Container>
-            }
-            {!isEditMode &&
-                <Container maxWidth="sm">
+            {isEditMode
+                ? <Edit/>
+                : <Container maxWidth="sm">
                     {selectedTopic && <Link onClick={goToMain}><ArrowBackIcon/> Back to topics</Link>}
                     <h2 style={{textAlign: "center"}}>
                         {selectedTopic
                             ? topics.find(el => el.id === selectedTopic)?.title
                             : "Choose topic"}
                     </h2>
-                    {
-                        selectedTopic
-                            ? <Questions questionsKey={topics.filter(el => el.id === selectedTopic)[0].questionsKey} onFinish={goToMain}/>
-                            : <Topics topics={topics} setSelectedTopic={setSelectedTopic}/>
+                    { selectedTopic
+                        ? <Questions
+                            questionsKey={topics.filter(el => el.id === selectedTopic)[0].questionsKey}
+                            onFinish={goToMain} />
+                        : <Topics topics={topics} setSelectedTopic={setSelectedTopic}/>
                     }
                 </Container>
             }

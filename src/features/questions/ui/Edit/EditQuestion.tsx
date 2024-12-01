@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select"
 import TextField from "@mui/material/TextField"
 import Grid2 from "@mui/material/Grid2"
 import Box from "@mui/material/Box"
-import { QuestionType } from "../../../../app/Main"
+import { QuestionType, QuestionTypes } from "../../../../app/Main"
 import ButtonGroup from "@mui/material/ButtonGroup"
 import { useState } from "react"
 import RadioGroup from "@mui/material/RadioGroup"
@@ -15,24 +15,24 @@ import Radio from "@mui/material/Radio"
 
 type Props = {
     question: QuestionType
-    seteditableQuestion: (valuse: QuestionType | null) => void
+    setEditableQuestion: (valuse: QuestionType | null) => void
 }
 
 
-export const EditQuestion = ({ question, seteditableQuestion }: Props) => {
-    const [questionType, setQuestionType] = useState<"oneAnswer" | "severalAnswers" | "text">("oneAnswer")
+export const EditQuestion = ({ question, setEditableQuestion }: Props) => {
+    const [questionType, setQuestionType] = useState<QuestionTypes>("oneAnswer")
 
     const handleClickSaveQuestion = () => {
         //dispatch save
-        seteditableQuestion(null)
+        setEditableQuestion(null)
     }
 
     const handleClickCancel = () => {
-        seteditableQuestion(null)
+        setEditableQuestion(null)
     }
 
     const handleChangeQuestionType = (event: SelectChangeEvent) => {
-        setQuestionType(event.target.value as "oneAnswer" | "severalAnswers" | "text")
+        setQuestionType(event.target.value as QuestionTypes)
     }
 
     return (
@@ -57,7 +57,7 @@ export const EditQuestion = ({ question, seteditableQuestion }: Props) => {
                                         checked={op.isRight}
                                         key={op.id}
                                     />
-                                    <TextField required value={op.answer} sx={{flexGrow:1}}/>
+                                    <TextField required value={op.answer} sx={{flexGrow:1}} variant="standard"/>
                                 </Box>
                             )}
                         </RadioGroup>
@@ -65,7 +65,7 @@ export const EditQuestion = ({ question, seteditableQuestion }: Props) => {
                         question.options.map(op =>
                             <Box style={{display:"flex", width:"100%"}} >
                                 <Checkbox checked={op.isRight}/>
-                                <TextField required value={op.answer} sx={{flexGrow:1}}/>
+                                <TextField required value={op.answer} sx={{flexGrow:1}} variant="standard"/>
                             </Box>
                         )
                 }

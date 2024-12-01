@@ -22,16 +22,16 @@ type Props = {
 
 export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
     const questions = useAppSelector(selectQuestions)
-    const [editableQuestion, seteditableQuestion] = useState<QuestionType | null>(null)
+    const [editableQuestion, setEditableQuestion] = useState<QuestionType | null>(null)
 
     const handleClickEditQuestion = (question: QuestionType) => {
-        seteditableQuestion(question)
+        setEditableQuestion(question)
     }
 
     return (
         <>
             {editableQuestion
-                ? <EditQuestion question={editableQuestion} seteditableQuestion={seteditableQuestion}/>
+                ? <EditQuestion question={editableQuestion} setEditableQuestion={setEditableQuestion}/>
                 : <>
                     <Link onClick={handleClickCancel}><ArrowBackIcon/> Back</Link>
                     {questions[topicKey].map(el =>
@@ -42,12 +42,14 @@ export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
                                     <EditIcon onClick={() => handleClickEditQuestion(el)}/>
                                 </div>
                                 <span>{el.type}</span>
+
                                 {el.options.map(op =>
                                     <div>
                                         <Checkbox disabled checked={op.isRight}/>
                                         <span>{op.answer}</span>
                                     </div>
                                 )}
+
                                 <span>{el.answerDescription}</span>
                             </Grid2>
                             <Divider />
