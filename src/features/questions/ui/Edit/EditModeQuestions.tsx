@@ -1,4 +1,7 @@
-import Checkbox from "@mui/material/Checkbox"
+import { Link } from "../../../../common/components/Link/Link"
+import { EditQuestion } from "./EditQuestion"
+import { useState } from "react"
+import { QuestionType } from "../../../../app/Main"
 import { useAppSelector } from "../../../../common/hooks/useAppSelector"
 import { selectQuestions } from "../../../../app/appSelectors"
 import Grid2 from "@mui/material/Grid2"
@@ -6,10 +9,8 @@ import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Link } from "../../../../common/components/Link/Link"
-import { EditQuestion } from "./EditQuestion"
-import { useState } from "react"
-import { QuestionType } from "../../../../app/Main"
+import Button from "@mui/material/Button"
+import Checkbox from "@mui/material/Checkbox"
 
 
 type Props = {
@@ -26,6 +27,10 @@ export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
 
     const handleClickEditQuestion = (question: QuestionType) => {
         setEditableQuestion(question)
+    }
+
+    const handleClickAddQuestion = () => {
+
     }
 
     return (
@@ -55,6 +60,7 @@ export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
                             <Divider />
                         </Box>
                     )}
+                    <Button variant="contained" onClick={handleClickAddQuestion} sx={{mb: 3}}>Add Question</Button>
                 </>
             }
         </>
