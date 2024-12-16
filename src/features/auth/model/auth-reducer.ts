@@ -1,11 +1,10 @@
 import { LoginArgs } from "../api/authApi.types"
 import { Dispatch } from "redux"
 import { authApi } from "../api/authApi"
-import { setAppStatusAC } from "app/app-reducer"
-import { ResultCode } from "common/enums/enums"
-import { handleServerAppError } from "common/utils/handleServerAppError"
-import { handleServerNetworkError } from "common/utils/handleServerNetworkError"
-import { clearStateAC } from "../../todolists/model/todolists-reducer"
+import {setAppStatusAC} from "../../../app/app-reducer";
+import {ResultCode} from "../../../common/enums/enums";
+import {handleServerAppError} from "../../../common/utils/handleServerAppError";
+import {handleServerNetworkError} from "../../../common/utils/handleServerNetworkError";
 
 type InitialStateType = typeof initialState
 
@@ -68,7 +67,6 @@ export const logoutTC = () => (dispatch: Dispatch) => {
                 dispatch(setAppStatusAC("succeeded"))
                 dispatch(setIsLoggedInAC(false))
                 localStorage.removeItem("sn-token")
-                dispatch(clearStateAC())
             } else {
                 handleServerAppError(res.data, dispatch)
             }

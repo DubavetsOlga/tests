@@ -1,10 +1,10 @@
-import { Edit } from "../features/questions/ui/Edit/Edit";
-import { Link } from "../common/components/Link/Link";
-import { Questions } from "../features/questions/ui/Questions/Questions";
-import { Topics } from "../features/questions/ui/Topics/Topics";
+import {Edit} from "../features/questions/ui/Edit/Edit";
+import {Link} from "../common/components/Link/Link";
+import {Questions} from "../features/questions/ui/Questions/Questions";
+import {Topics} from "../features/questions/ui/Topics/Topics";
 import {useCallback, useState} from "react";
-import { useAppSelector } from "../common/hooks/useAppSelector";
-import { selectTopics } from "./appSelectors";
+import {useAppSelector} from "../common/hooks/useAppSelector";
+import {selectTopics} from "./appSelectors";
 import Container from "@mui/material/Container";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -56,10 +56,10 @@ export const Main = () => {
                             ? topics.find(el => el.id === selectedTopic)?.title
                             : "Choose topic"}
                     </h2>
-                    { selectedTopic
+                    {selectedTopic
                         ? <Questions
                             questionsKey={topics.filter(el => el.id === selectedTopic)[0].questionsKey}
-                            onFinish={goToMain} />
+                            onFinish={goToMain}/>
                         : <Topics topics={topics} setSelectedTopic={setSelectedTopic}/>
                     }
                 </Container>

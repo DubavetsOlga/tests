@@ -3,18 +3,17 @@ import Checkbox from "@mui/material/Checkbox"
 import FormControl from "@mui/material/FormControl"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import FormGroup from "@mui/material/FormGroup"
-import FormLabel from "@mui/material/FormLabel"
 import TextField from "@mui/material/TextField"
-import { selectIsLoggedIn } from "app/appSelectors"
-import { useAppSelector } from "common/hooks/useAppSelector"
 import Grid from "@mui/material/Grid2"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import {Controller, SubmitHandler, useForm} from "react-hook-form"
 import s from "./Login.module.css"
-import { loginTC } from "../../model/auth-reducer"
-import { useNavigate } from "react-router"
-import { useEffect } from "react"
-import { Path } from "common/routing/Routing"
-import { useAppDispatch } from "common/hooks/useAppDispatch"
+import {loginTC} from "../../model/auth-reducer"
+import {useNavigate} from "react-router"
+import {useEffect} from "react"
+import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
+import {Path} from "../../../../common/routing/Routing";
+import {useAppSelector} from "../../../../common/hooks/useAppSelector";
+import {selectIsLoggedIn} from "../../../../app/appSelectors";
 
 type Inputs = {
     email: string
@@ -38,39 +37,19 @@ export const Login = () => {
         handleSubmit,
         reset,
         control,
-        formState: { errors },
-    } = useForm<Inputs>({ defaultValues: { email: "", password: "", rememberMe: false } })
+        formState: {errors},
+    } = useForm<Inputs>({defaultValues: {email: "", password: "", rememberMe: false}})
 
     const dispatch = useAppDispatch()
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(loginTC(data))
-        //reset()
+        reset()
     }
 
     return (
         <Grid container justifyContent={"center"}>
             <FormControl>
-                <FormLabel>
-                    <p>
-                        To login get registered
-                        <a
-                            style={{ marginLeft: "5px" }}
-                            href={"https://social-network.samuraijs.com/"}
-                            target={"_blank"}
-                            rel="noreferrer"
-                        >
-                            here
-                        </a>
-                    </p>
-                    <p>or use common test account credentials:</p>
-                    <p>
-                        <b>Email:</b> free@samuraijs.com
-                    </p>
-                    <p>
-                        <b>Password:</b> free
-                    </p>
-                </FormLabel>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FormGroup>
                         <TextField
@@ -104,7 +83,7 @@ export const Login = () => {
                                 <Controller
                                     name={"rememberMe"}
                                     control={control}
-                                    render={({ field: { value, ...rest } }) => <Checkbox {...rest} checked={value} />}
+                                    render={({field: {value, ...rest}}) => <Checkbox {...rest} checked={value}/>}
                                 />
                             }
                         />

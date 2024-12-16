@@ -1,6 +1,7 @@
-import { LoginArgs } from "./authApi.types"
-import { instance } from "common/instance/instance"
-import { BaseResponse } from "common/types"
+import {instance} from "../../../common/instance/instance";
+import {BaseResponse} from "../../../common/types";
+import {LoginArgs} from "./authApi.types";
+
 
 export const authApi = {
     login(payload: LoginArgs) {

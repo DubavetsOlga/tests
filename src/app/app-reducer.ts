@@ -1,10 +1,13 @@
 export type ThemeMode = 'dark' | 'light'
+export type RequestStatus = "idle" | "loading" | "succeeded" | "failed"
 
 type InitialState = typeof initialState
 
 const initialState = {
     themeMode: (localStorage.getItem('theme') ?? 'light') as ThemeMode,
-    editMode: false
+    editMode: false,
+    status: "idle" as RequestStatus,
+    error: null as string | null,
 }
 
 export const appReducer = (
@@ -16,6 +19,10 @@ export const appReducer = (
             return {...state, themeMode: action.payload.themeMode}
         case 'CHANGE_EDIT_MODE':
             return {...state, editMode: !state.editMode}
+        case "SET_STATUS":
+            return {...state, status: action.payload.status}
+        case "SET_ERROR":
+            return {...state, error: action.payload.error}
         default:
             return state
     }
@@ -25,7 +32,7 @@ export const appReducer = (
 export const changeThemeAC = (themeMode: ThemeMode) => {
     return {
         type: 'CHANGE_THEME',
-        payload: { themeMode }
+        payload: {themeMode}
     } as const
 }
 
@@ -35,9 +42,28 @@ export const changeEditModeAC = () => {
     } as const
 }
 
+export const setAppStatusAC = (status: RequestStatus) => {
+    return {
+        type: "SET_STATUS",
+        payload: {status},
+    } as const
+}
+
+export const setAppErrorAC = (error: string | null) => {
+    return {
+        type: "SET_ERROR",
+        payload: {error},
+    } as const
+}
+
 // Actions types
-type ChangeThemeActionType =  ReturnType<typeof changeThemeAC>
+type ChangeThemeActionType = ReturnType<typeof changeThemeAC>
+type ChangeEditModeActionType = ReturnType<typeof changeEditModeAC>
+type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
+type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
 
-type ChangeEditModeActionType =  ReturnType<typeof changeEditModeAC>
-
-type ActionsType = ChangeThemeActionType | ChangeEditModeActionType
+export type ActionsType =
+    ChangeThemeActionType
+    | ChangeEditModeActionType
+    | SetAppStatusActionType
+    | SetAppErrorActionType
