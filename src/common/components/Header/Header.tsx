@@ -4,9 +4,9 @@ import Toolbar from "@mui/material/Toolbar";
 // import MenuIcon from "@mui/icons-material/Menu";
 import Switch from "@mui/material/Switch";
 import {changeEditModeAC, changeThemeAC} from "../../../app/app-reducer";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
 import Button from "@mui/material/Button";
-import { useAppSelector } from "../../hooks/useAppSelector";
+import {useAppSelector} from "../../hooks/useAppSelector";
 import {useCallback} from "react";
 
 export const Header = () => {
@@ -25,15 +25,16 @@ export const Header = () => {
     }, [dispatch])
 
     return (
-        <AppBar position="static" sx={{ mb: '30px' }}>
-            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <AppBar position="static" sx={{mb: '30px'}}>
+            <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                 {/* <IconButton color="inherit">
 					<MenuIcon />
 				</IconButton> */}
                 <div>
                     {/* <Button>Login</Button>
 					<Button>Logout</Button> */}
-                    <Button variant="contained" onClick={handleClickChangeMode}>{isEditMode ? "Test Mode" : "Change Mode"}</Button>
+                    <Button variant="contained"
+                            onClick={handleClickChangeMode}>{isEditMode ? "Test Mode" : "Change Mode"}</Button>
                     <Switch color={'default'} onChange={handleClickChangeTheme} defaultChecked={themeMode === 'dark'}/>
                 </div>
             </Toolbar>

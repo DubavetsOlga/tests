@@ -1,5 +1,5 @@
 import Radio from "@mui/material/Radio"
-import { memo } from "react";
+import {memo} from "react";
 
 type ProgressProps = {
     answers: { id: number, isRight: boolean, isDone: boolean }[]
@@ -7,7 +7,7 @@ type ProgressProps = {
     setQuestionNumber: (number: number) => void
 }
 
-export const Progress = memo(({ answers, questionNumber, setQuestionNumber }: ProgressProps) => {
+export const Progress = memo(({answers, questionNumber, setQuestionNumber}: ProgressProps) => {
 
     return (
         <div>
@@ -24,10 +24,10 @@ export const Progress = memo(({ answers, questionNumber, setQuestionNumber }: Pr
                             '&.Mui-checked': {
                                 color: (el.isDone ? el.isRight ? "#87b362" : "#cd6858" : "#cecfcd"),
                             },
-                            p:"2px"
+                            p: "2px"
                         }}
                     />
-            )}
+                )}
         </div>
     )
 })

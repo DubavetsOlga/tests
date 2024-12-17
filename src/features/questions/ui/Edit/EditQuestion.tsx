@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { QuestionType, QuestionTypes } from "../../../../app/Main"
-import Select, { SelectChangeEvent } from "@mui/material/Select"
+import {useState} from "react"
+import {QuestionType, QuestionTypes} from "../../../../app/Main"
+import Select, {SelectChangeEvent} from "@mui/material/Select"
 import ButtonGroup from "@mui/material/ButtonGroup"
 import RadioGroup from "@mui/material/RadioGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
@@ -21,7 +21,7 @@ type Props = {
 }
 
 
-export const EditQuestion = ({ question, setEditableQuestion }: Props) => {
+export const EditQuestion = ({question, setEditableQuestion}: Props) => {
     const [questionType, setQuestionType] = useState<QuestionTypes>("oneAnswer")
 
     const handleClickSaveQuestion = () => {
@@ -52,7 +52,7 @@ export const EditQuestion = ({ question, setEditableQuestion }: Props) => {
 
     return (
         <Box key={question.id} sx={{mb: 5}}>
-            <Grid2 container spacing={2} sx={{flexDirection:"column", mb: 2}}>
+            <Grid2 container spacing={2} sx={{flexDirection: "column", mb: 2}}>
                 <TextField required label="Question" value={question.question}/>
                 <Select id={question.id} value={questionType} onChange={handleChangeQuestionType}>
                     <MenuItem value={"oneAnswer"}>one answer</MenuItem>
@@ -61,36 +61,37 @@ export const EditQuestion = ({ question, setEditableQuestion }: Props) => {
                 </Select>
                 {questionType === "oneAnswer"
                     ? <RadioGroup name="options">
-                            {question.options.map(op => 
-                                <Box style={{display:"flex", width:"100%"}} >
-                                    <FormControlLabel
-                                        value={op.id}
-                                        control={<Radio/>}
-                                        label=""
-                                        name="option"
-                                        id={op.id}
-                                        checked={op.isRight}
-                                        key={op.id}
-                                    />
-                                    <TextField required value={op.answer} sx={{flexGrow:1}} variant="standard"/>
-                                    <IconButton onClick={() => handleClickDeleteOption(op.id)} aria-label="delete">
-                                        <DeleteIcon/>
-                                    </IconButton>
-                                </Box>
-                            )}
-                        </RadioGroup>
-                    : 
-                        question.options.map(op =>
-                            <Box style={{display:"flex", width:"100%"}} >
-                                <Checkbox checked={op.isRight}/>
-                                <TextField required value={op.answer} sx={{flexGrow:1}} variant="standard"/>
+                        {question.options.map(op =>
+                            <Box style={{display: "flex", width: "100%"}}>
+                                <FormControlLabel
+                                    value={op.id}
+                                    control={<Radio/>}
+                                    label=""
+                                    name="option"
+                                    id={op.id}
+                                    checked={op.isRight}
+                                    key={op.id}
+                                />
+                                <TextField required value={op.answer} sx={{flexGrow: 1}} variant="standard"/>
                                 <IconButton onClick={() => handleClickDeleteOption(op.id)} aria-label="delete">
                                     <DeleteIcon/>
                                 </IconButton>
                             </Box>
-                        )
+                        )}
+                    </RadioGroup>
+                    :
+                    question.options.map(op =>
+                        <Box style={{display: "flex", width: "100%"}}>
+                            <Checkbox checked={op.isRight}/>
+                            <TextField required value={op.answer} sx={{flexGrow: 1}} variant="standard"/>
+                            <IconButton onClick={() => handleClickDeleteOption(op.id)} aria-label="delete">
+                                <DeleteIcon/>
+                            </IconButton>
+                        </Box>
+                    )
                 }
-                <Button variant="contained" size="small" onClick={handleClickAddOption} sx={{maxWidth: 150, mb: 2}}>Add Option</Button>
+                <Button variant="contained" size="small" onClick={handleClickAddOption} sx={{maxWidth: 150, mb: 2}}>Add
+                    Option</Button>
                 <TextField label="Answer Description" value={question.answerDescription}/>
             </Grid2>
             <ButtonGroup variant="contained">

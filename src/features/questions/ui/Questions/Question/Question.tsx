@@ -4,10 +4,10 @@ import RadioGroup from "@mui/material/RadioGroup"
 import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio"
 import FormControlLabel from "@mui/material/FormControlLabel"
-import { FormEvent, memo } from "react";
+import {FormEvent, memo} from "react";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
-import { OptionType, QuestionType } from "../../../../../app/Main";
+import {OptionType, QuestionType} from "../../../../../app/Main";
 
 
 type QuestionProps = {
@@ -18,7 +18,13 @@ type QuestionProps = {
     userAnswers: String[]
 }
 
-export const Question = memo(({ question, setQuestionAnswer, isAnswerDone, setUserAnswer, userAnswers }: QuestionProps) => {
+export const Question = memo(({
+                                  question,
+                                  setQuestionAnswer,
+                                  isAnswerDone,
+                                  setUserAnswer,
+                                  userAnswers
+                              }: QuestionProps) => {
 
     const answerClickHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -39,55 +45,55 @@ export const Question = memo(({ question, setQuestionAnswer, isAnswerDone, setUs
     }
 
     return (
-            <form onSubmit={answerClickHandler}>
-                <FormControl variant="standard" fullWidth>
-                    <FormLabel id="question">{question.question}</FormLabel>
+        <form onSubmit={answerClickHandler}>
+            <FormControl variant="standard" fullWidth>
+                <FormLabel id="question">{question.question}</FormLabel>
 
-                    {question.type === "oneAnswer" && 
-                        <RadioGroup name="quiz" onChange={(e) => setUserAnswer(e.currentTarget.value, null)}>
-                            {question.options.map(el => 
-                                <FormControlLabel
-                                    value={el.id}
-                                    control={<Radio sx={() => optionColor(el)}/>}
-                                    label={el.answer}
-                                    disabled={isAnswerDone}
-                                    name="option"
-                                    id={el.id}
-                                    checked={userAnswers.includes(el.id)}
-                                    key={el.id}
-                                />
-                            )}
-                        </RadioGroup>
-                    }
+                {question.type === "oneAnswer" &&
+                    <RadioGroup name="quiz" onChange={(e) => setUserAnswer(e.currentTarget.value, null)}>
+                        {question.options.map(el =>
+                            <FormControlLabel
+                                value={el.id}
+                                control={<Radio sx={() => optionColor(el)}/>}
+                                label={el.answer}
+                                disabled={isAnswerDone}
+                                name="option"
+                                id={el.id}
+                                checked={userAnswers.includes(el.id)}
+                                key={el.id}
+                            />
+                        )}
+                    </RadioGroup>
+                }
 
-                    {question.type === "severalAnswers" &&
-                        <FormGroup>
-                            {question.options.map(el => 
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={userAnswers.includes(el.id)}
-                                            onChange={(e) => setUserAnswer(el.id, e.currentTarget.checked)}
-                                            name={el.id} 
-                                            sx={() => optionColor(el)}
-                                        />
-                                    }
-                                    label={el.answer}
-                                    disabled={isAnswerDone}
-                                    key={el.id}
-                                />
-                            )}
-                        </FormGroup>
-                    }
+                {question.type === "severalAnswers" &&
+                    <FormGroup>
+                        {question.options.map(el =>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={userAnswers.includes(el.id)}
+                                        onChange={(e) => setUserAnswer(el.id, e.currentTarget.checked)}
+                                        name={el.id}
+                                        sx={() => optionColor(el)}
+                                    />
+                                }
+                                label={el.answer}
+                                disabled={isAnswerDone}
+                                key={el.id}
+                            />
+                        )}
+                    </FormGroup>
+                }
 
-                    { !isAnswerDone && <Button
-                        disabled={userAnswers.length === 0}
-                        title="Answer"
-                        type="submit"
-                        variant="outlined"
-                        sx={{alignSelf: "flex-end"}}
-                    >Check Answer</Button> }
-                </FormControl>
-            </form>
+                {!isAnswerDone && <Button
+                    disabled={userAnswers.length === 0}
+                    title="Answer"
+                    type="submit"
+                    variant="outlined"
+                    sx={{alignSelf: "flex-end"}}
+                >Check Answer</Button>}
+            </FormControl>
+        </form>
     )
 })

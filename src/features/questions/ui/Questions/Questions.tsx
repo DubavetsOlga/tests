@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Question } from "./Question/Question"
+import {useState} from "react";
+import {Question} from "./Question/Question"
 import Button from "@mui/material/Button";
-import { Progress } from "./Progress/Progress";
-import { Box, Link, Paper } from "@mui/material";
+import {Progress} from "./Progress/Progress";
+import {Box, Link, Paper} from "@mui/material";
 import {QuestionKeys, QuestionType} from "../../../../app/Main";
 import {useAppSelector} from "../../../../common/hooks/useAppSelector";
 import {selectQuestions} from "../../../../app/appSelectors";
@@ -22,13 +22,13 @@ type answerType = {
 const answersInition = (count: number) => {
     const answersInit: answerType[] = [];
     for (let i = 0; i < count; i++) {
-        answersInit.push({ id: i, isRight: false, isDone: false, userAnswers: [] });
+        answersInit.push({id: i, isRight: false, isDone: false, userAnswers: []});
     }
 
     return answersInit;
 }
 
-export const Questions = ({ questionsKey, onFinish }: QuestionsProps) => {
+export const Questions = ({questionsKey, onFinish}: QuestionsProps) => {
     const questions = useAppSelector(selectQuestions)[questionsKey]
     const answersInit = answersInition(questions.length);
 
@@ -62,7 +62,7 @@ export const Questions = ({ questionsKey, onFinish }: QuestionsProps) => {
 
     return (
         <Box>
-            <Paper sx={{p:2, display:"flex", flexDirection:"column"}}>
+            <Paper sx={{p: 2, display: "flex", flexDirection: "column"}}>
                 <Progress questionNumber={questionNumber + 1} answers={answers} setQuestionNumber={setQuestionNumber}/>
                 <Question
                     question={questions[questionNumber]}

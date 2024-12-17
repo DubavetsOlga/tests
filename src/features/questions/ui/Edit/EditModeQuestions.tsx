@@ -1,9 +1,9 @@
-import { Link } from "../../../../common/components/Link/Link"
-import { EditQuestion } from "./EditQuestion"
-import { useState } from "react"
-import { QuestionType } from "../../../../app/Main"
-import { useAppSelector } from "../../../../common/hooks/useAppSelector"
-import { selectQuestions } from "../../../../app/appSelectors"
+import {Link} from "../../../../common/components/Link/Link"
+import {EditQuestion} from "./EditQuestion"
+import {useState} from "react"
+import {QuestionType} from "../../../../app/Main"
+import {useAppSelector} from "../../../../common/hooks/useAppSelector"
+import {selectQuestions} from "../../../../app/appSelectors"
 import Grid2 from "@mui/material/Grid2"
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
@@ -21,7 +21,7 @@ type Props = {
 }
 
 
-export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
+export const EditModeQuestions = ({topicKey, handleClickCancel}: Props) => {
     const questions = useAppSelector(selectQuestions)
     const [editableQuestion, setEditableQuestion] = useState<QuestionType | null>(null)
 
@@ -41,7 +41,7 @@ export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
                     <Link onClick={handleClickCancel}><ArrowBackIcon/> Back</Link>
                     {questions[topicKey].map(el =>
                         <Box key={el.id} sx={{mb: 3}}>
-                            <Grid2 container spacing={2} sx={{flexDirection:"column", mb: 2}}>
+                            <Grid2 container spacing={2} sx={{flexDirection: "column", mb: 2}}>
                                 <div>
                                     <span>{el.question}</span>
                                     <EditIcon onClick={() => handleClickEditQuestion(el)}/>
@@ -57,7 +57,7 @@ export const EditModeQuestions = ({ topicKey, handleClickCancel }: Props) => {
 
                                 <span>{el.answerDescription}</span>
                             </Grid2>
-                            <Divider />
+                            <Divider/>
                         </Box>
                     )}
                     <Button variant="contained" onClick={handleClickAddQuestion} sx={{mb: 3}}>Add Question</Button>
