@@ -1,7 +1,6 @@
 import { Dispatch } from "redux"
-import {setAppErrorAC, setAppStatusAC} from "../../app/app-reducer";
-import {BaseResponse} from "../types";
-
+import { setAppErrorAC, setAppStatusAC } from "../../app/app-reducer"
+import { BaseResponse } from "../types"
 
 export const handleServerAppError = <T>(data: BaseResponse<T>, dispatch: Dispatch) => {
     if (data.messages.length) {

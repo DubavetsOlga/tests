@@ -1,4 +1,4 @@
-import {memo} from "react";
+import { memo } from "react"
 
 type LinkProps = {
     onClick?: () => void
@@ -6,9 +6,10 @@ type LinkProps = {
     children: any
 }
 
-export const Link = memo(({onClick, href, children}: LinkProps) => {
-
+export const Link = memo(({ onClick, href, children }: LinkProps) => {
     return (
-        <a href={href} target="_blank" onClick={onClick} style={{display: "flex"}}>{children}</a>
+        <a href={href} target="_blank" onClick={onClick} style={{ display: "flex" }}>
+            {children}
+        </a>
     )
 })

@@ -1,25 +1,25 @@
-import React from 'react';
-import './index.css';
-import App from './app/App';
-import * as serviceWorker from './serviceWorker';
-import {createRoot} from 'react-dom/client';
-import {store} from "./app/store";
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router";
+import React from "react"
+import "./index.css"
+import App from "./app/App"
+import * as serviceWorker from "./serviceWorker"
+import { createRoot } from "react-dom/client"
+import { store } from "./app/store"
+import { Provider } from "react-redux"
+import { BrowserRouter } from "react-router"
 
-const container = document.getElementById('root') as HTMLElement
-const root = createRoot(container);
+const container = document.getElementById("root") as HTMLElement
+const root = createRoot(container)
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <App />
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>
-);
+    </React.StrictMode>,
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.unregister()

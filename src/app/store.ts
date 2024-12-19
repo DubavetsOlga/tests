@@ -1,9 +1,9 @@
-import {combineReducers, legacy_createStore, UnknownAction} from 'redux'
-import {appReducer} from "./app-reducer";
-import {questionsReducer} from "../features/questions/model/questions-reducer";
-import {topicsReducer} from "../features/questions/model/topics-reducer";
-import {authReducer} from "../features/auth/model/auth-reducer";
-import {ThunkDispatch} from "redux-thunk";
+import { combineReducers, legacy_createStore, UnknownAction } from "redux"
+import { appReducer } from "./app-reducer"
+import { questionsReducer } from "../features/questions/model/questions-reducer"
+import { topicsReducer } from "../features/questions/model/topics-reducer"
+import { authReducer } from "../features/auth/model/auth-reducer"
+import { ThunkDispatch } from "redux-thunk"
 
 const rootReducer = combineReducers({
     questions: questionsReducer,

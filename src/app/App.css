@@ -1,8 +1,8 @@
 h2 {
-  color: #b18742
+    color: #b18742;
 }
 
 a:hover {
-  color: #e6d5a9;
-  cursor: pointer;
-} 
+    color: #e6d5a9;
+    cursor: pointer;
+}

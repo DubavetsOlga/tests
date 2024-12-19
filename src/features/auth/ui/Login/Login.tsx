@@ -5,15 +5,15 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import FormGroup from "@mui/material/FormGroup"
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid2"
-import {Controller, SubmitHandler, useForm} from "react-hook-form"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import s from "./Login.module.css"
-import {loginTC} from "../../model/auth-reducer"
-import {useNavigate} from "react-router"
-import {useEffect} from "react"
-import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
-import {Path} from "../../../../common/routing/Routing";
-import {useAppSelector} from "../../../../common/hooks/useAppSelector";
-import {selectIsLoggedIn} from "../../../../app/appSelectors";
+import { loginTC } from "../../model/auth-reducer"
+import { useNavigate } from "react-router"
+import { useEffect } from "react"
+import { useAppDispatch } from "../../../../common/hooks/useAppDispatch"
+import { Path } from "../../../../common/routing/Routing"
+import { useAppSelector } from "../../../../common/hooks/useAppSelector"
+import { selectIsLoggedIn } from "../../../../app/appSelectors"
 
 type Inputs = {
     email: string
@@ -37,8 +37,8 @@ export const Login = () => {
         handleSubmit,
         reset,
         control,
-        formState: {errors},
-    } = useForm<Inputs>({defaultValues: {email: "", password: "", rememberMe: false}})
+        formState: { errors },
+    } = useForm<Inputs>({ defaultValues: { email: "", password: "", rememberMe: false } })
 
     const dispatch = useAppDispatch()
 
@@ -83,7 +83,7 @@ export const Login = () => {
                                 <Controller
                                     name={"rememberMe"}
                                     control={control}
-                                    render={({field: {value, ...rest}}) => <Checkbox {...rest} checked={value}/>}
+                                    render={({ field: { value, ...rest } }) => <Checkbox {...rest} checked={value} />}
                                 />
                             }
                         />

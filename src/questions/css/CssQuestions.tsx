@@ -1,5 +1,5 @@
-import { v1 } from 'uuid';
-import {QuestionType} from "../../app/Main";
+import { v1 } from "uuid"
+import { QuestionType } from "../../app/Main"
 
 export const cssQuestions: QuestionType[] = [
     {
@@ -28,11 +28,12 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties",
-        type: "oneAnswer"
+        type: "oneAnswer",
     },
     {
         id: v1(),
-        question: "Выбери значение, которое необходимо указать text-align, чтобы текст растянулся по всей ширине контейнера, увеличив пробелы между словами",
+        question:
+            "Выбери значение, которое необходимо указать text-align, чтобы текст растянулся по всей ширине контейнера, увеличив пробелы между словами",
         options: [
             {
                 id: v1(),
@@ -56,7 +57,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/cssref/pr_text_text-align.php",
-        type: "oneAnswer"
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -84,7 +85,7 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/cssref/css3_pr_box-shadow.php",
-        type: "oneAnswer"
+        type: "oneAnswer",
     },
     {
         id: v1(),
@@ -112,11 +113,12 @@ export const cssQuestions: QuestionType[] = [
             },
         ],
         answerDescription: "https://www.w3schools.com/css/css_positioning.asp",
-        type: "oneAnswer"
+        type: "oneAnswer",
     },
     {
         id: v1(),
-        question: "Выберите свойство CSS, которое указывает, как будут расположены строки текста(горизонтально или вертикально).",
+        question:
+            "Выберите свойство CSS, которое указывает, как будут расположены строки текста(горизонтально или вертикально).",
         options: [
             {
                 id: v1(),
@@ -170,4 +172,4 @@ export const cssQuestions: QuestionType[] = [
         answerDescription: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties",
         type: "severalAnswers",
     },
-];
+]

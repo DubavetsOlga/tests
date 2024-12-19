@@ -1,5 +1,5 @@
-import {v1} from "uuid";
-import {TopicType} from "../../../app/Main";
+import { v1 } from "uuid"
+import { TopicType } from "../../../app/Main"
 
 type InitialState = typeof initialState
 
@@ -8,28 +8,25 @@ const initialState: TopicType[] = [
         id: v1(),
         title: "HTML",
         questionsKey: "html",
-        description: "5 questions about base HTML"
+        description: "5 questions about base HTML",
     },
     {
         id: v1(),
         title: "CSS",
         questionsKey: "css",
-        description: "6 questions about base CSS"
+        description: "6 questions about base CSS",
     },
-];
+]
 
-export const topicsReducer = (
-    state: InitialState = initialState,
-    action: TopicsActionTypes
-): InitialState => {
+export const topicsReducer = (state: InitialState = initialState, action: TopicsActionTypes): InitialState => {
     switch (action.type) {
-        case 'ADD_TOPIC':
+        case "ADD_TOPIC":
             return state
-        case 'DELETE_TOPIC':
+        case "DELETE_TOPIC":
             return state
-        case 'CHANGE_TOPIC_TITLE':
+        case "CHANGE_TOPIC_TITLE":
             return state
-        case 'CHANGE_TOPIC_DESCRIPTION':
+        case "CHANGE_TOPIC_DESCRIPTION":
             return state
         //add link to questions
         default:
@@ -40,29 +37,29 @@ export const topicsReducer = (
 // Action creators
 export const addTopicAC = (title: string) => {
     return {
-        type: 'ADD_TOPIC',
-        payload: {title}
+        type: "ADD_TOPIC",
+        payload: { title },
     } as const
 }
 
 export const deleteTopicAC = (id: string) => {
     return {
-        type: 'DELETE_TOPIC',
-        payload: {id}
+        type: "DELETE_TOPIC",
+        payload: { id },
     } as const
 }
 
-export const changeTopicTitleAC = (payload: { id: string, title: string }) => {
+export const changeTopicTitleAC = (payload: { id: string; title: string }) => {
     return {
-        type: 'CHANGE_TOPIC_TITLE',
-        payload: payload
+        type: "CHANGE_TOPIC_TITLE",
+        payload: payload,
     } as const
 }
 
-export const changeTopicDescriptionAC = (payload: { id: string, description: string }) => {
+export const changeTopicDescriptionAC = (payload: { id: string; description: string }) => {
     return {
-        type: 'CHANGE_TOPIC_DESCRIPTION',
-        payload: {payload}
+        type: "CHANGE_TOPIC_DESCRIPTION",
+        payload: { payload },
     } as const
 }
 
@@ -72,7 +69,8 @@ type DeleteTopicActionType = ReturnType<typeof deleteTopicAC>
 type ChangeTopicTitleActionType = ReturnType<typeof changeTopicTitleAC>
 type ChangeTopicDescriptionActionType = ReturnType<typeof changeTopicDescriptionAC>
 
-export type TopicsActionTypes = AddTopicActionType
+export type TopicsActionTypes =
+    | AddTopicActionType
     | DeleteTopicActionType
     | ChangeTopicTitleActionType
     | ChangeTopicDescriptionActionType

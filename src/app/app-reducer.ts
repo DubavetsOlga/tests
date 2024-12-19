@@ -1,28 +1,25 @@
-export type ThemeMode = 'dark' | 'light'
+export type ThemeMode = "dark" | "light"
 export type RequestStatus = "idle" | "loading" | "succeeded" | "failed"
 
 type InitialState = typeof initialState
 
 const initialState = {
-    themeMode: (localStorage.getItem('theme') ?? 'light') as ThemeMode,
+    themeMode: (localStorage.getItem("theme") ?? "light") as ThemeMode,
     editMode: false,
     status: "idle" as RequestStatus,
     error: null as string | null,
 }
 
-export const appReducer = (
-    state: InitialState = initialState,
-    action: ActionsType
-): InitialState => {
+export const appReducer = (state: InitialState = initialState, action: ActionsType): InitialState => {
     switch (action.type) {
-        case 'CHANGE_THEME':
-            return {...state, themeMode: action.payload.themeMode}
-        case 'CHANGE_EDIT_MODE':
-            return {...state, editMode: !state.editMode}
+        case "CHANGE_THEME":
+            return { ...state, themeMode: action.payload.themeMode }
+        case "CHANGE_EDIT_MODE":
+            return { ...state, editMode: !state.editMode }
         case "SET_STATUS":
-            return {...state, status: action.payload.status}
+            return { ...state, status: action.payload.status }
         case "SET_ERROR":
-            return {...state, error: action.payload.error}
+            return { ...state, error: action.payload.error }
         default:
             return state
     }
@@ -31,28 +28,28 @@ export const appReducer = (
 // Action creators
 export const changeThemeAC = (themeMode: ThemeMode) => {
     return {
-        type: 'CHANGE_THEME',
-        payload: {themeMode}
+        type: "CHANGE_THEME",
+        payload: { themeMode },
     } as const
 }
 
 export const changeEditModeAC = () => {
     return {
-        type: 'CHANGE_EDIT_MODE',
+        type: "CHANGE_EDIT_MODE",
     } as const
 }
 
 export const setAppStatusAC = (status: RequestStatus) => {
     return {
         type: "SET_STATUS",
-        payload: {status},
+        payload: { status },
     } as const
 }
 
 export const setAppErrorAC = (error: string | null) => {
     return {
         type: "SET_ERROR",
-        payload: {error},
+        payload: { error },
     } as const
 }
 
@@ -63,7 +60,7 @@ type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
 type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
 
 export type ActionsType =
-    ChangeThemeActionType
+    | ChangeThemeActionType
     | ChangeEditModeActionType
     | SetAppStatusActionType
     | SetAppErrorActionType

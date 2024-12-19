@@ -1,5 +1,5 @@
-import { v1 } from 'uuid';
-import {QuestionType} from "../../app/Main";
+import { v1 } from "uuid"
+import { QuestionType } from "../../app/Main"
 
 export const htmlQuestions: QuestionType[] = [
     {
@@ -142,7 +142,7 @@ export const htmlQuestions: QuestionType[] = [
         answerDescription: "https://developer.mozilla.org/ru/docs/Web/HTML/Element/body",
         type: "oneAnswer",
     },
-];
+]
 
 /*
 Тестовые вопросы о таблицах в HTML:

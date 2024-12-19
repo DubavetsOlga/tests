@@ -1,10 +1,9 @@
-import {TopicType} from "../../../../app/Main";
-import {useState} from "react";
-import {Grid2} from "@mui/material";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-
+import { TopicType } from "../../../../app/Main"
+import { useState } from "react"
+import { Grid2 } from "@mui/material"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import ButtonGroup from "@mui/material/ButtonGroup"
 
 type Props = {
     topic: TopicType
@@ -13,8 +12,7 @@ type Props = {
     handleClickCancel: () => void
 }
 
-
-export const EditTopic = ({topic, setEditElementId, setEditQuestionsMode, handleClickCancel}: Props) => {
+export const EditTopic = ({ topic, setEditElementId, setEditQuestionsMode, handleClickCancel }: Props) => {
     const [title, setTitle] = useState(topic.title)
     const [description, setDescription] = useState(topic.description)
 
@@ -41,11 +39,18 @@ export const EditTopic = ({topic, setEditElementId, setEditQuestionsMode, handle
     }
 
     return (
-        <Grid2 container spacing={2} sx={{flexDirection: "column"}}>
-            <TextField required label="Title" value={title}
-                       onChange={e => handleClickChangeTitle(e.currentTarget.value)}/>
-            <TextField label="Description" value={description}
-                       onChange={e => handleClickChangeDescription(e.currentTarget.value)}/>
+        <Grid2 container spacing={2} sx={{ flexDirection: "column" }}>
+            <TextField
+                required
+                label="Title"
+                value={title}
+                onChange={(e) => handleClickChangeTitle(e.currentTarget.value)}
+            />
+            <TextField
+                label="Description"
+                value={description}
+                onChange={(e) => handleClickChangeDescription(e.currentTarget.value)}
+            />
 
             <ButtonGroup variant="contained">
                 <Button onClick={handleClickSaveChanges}>Save</Button>
